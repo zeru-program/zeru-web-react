@@ -1,0 +1,304 @@
+@media screen and (max-width: 368px) {
+  .bar-nav {
+    display: flex;
+  }
+
+  .logo-nav {
+    font-size: .8em;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    background: rgba(225,225,225,.5);
+    position: fixed;
+    top: -50%;
+    right: 0;
+    height: auto !important;
+    padding-block: 20px;
+    gap: 0;
+  }
+  #homeTitle {
+    font-size: 2em;
+  }
+  .img-skil {
+    width: 35px;
+    padding-top: 5px;
+  }
+  .contact-information, .contact-form {
+    width: 300px !important;
+  }
+  .box {
+   width: 300px;
+   height: 200px;
+  }
+  .act-link {
+    display: flex;
+    position: fixed;
+    top: 10%;
+    right: 0;
+  }
+  .link-item {
+    font-size: .7em;
+    margin-right: 50%;
+    white-space: nowrap;
+  }
+  .logo-home-isi {
+    width: 100px;
+  }
+  #contact {
+    display: flex;
+    flex-direction: column;
+  }
+  .isi-info-contact {
+    position: absolute;
+  top: 55%;
+  }
+.contact-information, .contact-form {
+  width: 350px;
+  height: 550px;
+}
+
+.container-footer {
+  display: flex;
+  flex-direction: column;
+}
+}
+
+@media screen and (min-width: 368px) {
+  .bar-nav {
+    display: flex;
+  }
+
+  .logo-nav {
+    font-size: .8em;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    height: auto !important;
+    background: rgba(225,225,225,.5);
+    position: fixed;
+    top: -50%;
+    right: 0;
+    padding-block: 20px !important;
+    gap: 5px;
+  }
+  .act-link {
+    display: flex;
+    position: fixed;
+    top: 7%;
+    right: 0;
+  }
+  .link-item {
+    font-size: .8em;
+    margin-right: 50%;
+    white-space: nowrap;
+  }
+  #contact {
+    display: flex;
+    flex-direction: column;
+  }
+  .isi-info-contact {
+    position: absolute;
+  top: 55%;
+  }
+  
+.contact-information, .contact-form {
+  width: 350px;
+  height: 550px;
+}
+.container-footer {
+  display: flex;
+  flex-direction: column;
+}
+}
+
+@media screen and (min-width: 568px) {
+  .bar-nav {
+    display: flex;
+  }
+
+  .logo-nav {
+    font-size: .8em;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    background: rgba(225,225,225,.5);
+    flex-direction: column;
+    position: fixed;
+    top: -50%;
+    height: auto !important;
+    padding-block: 20px;
+    right: 0;
+    gap: 5px;
+  }
+
+  .act-link {
+    display: flex;
+    position: fixed;
+    top: 7%;
+    right: 0;
+  }
+  .link-item {
+    margin-right: 50%;
+    white-space: nowrap;
+  }
+  #contact {
+    display: flex;
+    flex-direction: column;
+  }
+  .isi-info-contact {
+    position: absolute;
+  top: 60%;
+  }
+.contact-information, .contact-form {
+  width: 350px;
+  height: 550px;
+}
+.container-footer {
+  display: flex;
+  flex-direction: column;
+}
+}
+
+@media screen and (min-width: 768px) {
+  .bar-nav {
+    display: none;
+  }
+
+  .logo-nav {
+    font-size: 1.2em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    right: 0;
+    gap: 0;
+    width: auto;
+    height: 50px !important;
+    padding-inline: 0 !important;
+    margin-left: 40%;
+    font-size: .65em;
+    z-index: 99999;
+  }
+ .link-item {
+   margin-right: 0;
+ }
+  #contact {
+    display: flex;
+    flex-direction: row;
+  }
+  .contact-information, .contact-form {
+    width: 500px;
+  }
+  .isi-info-contact {
+    position: absolute;
+    top: 50%;
+  }
+.isi-popup-succ {
+  width: 350px;
+  height: 400px;
+}
+.container-footer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+.decoration-block {
+  transform: rotate(2deg);
+}
+.title-project {
+  font-size: 1.5em;
+}
+.title-project-v1 {
+  font-size: 3em;
+}
+.link-project {
+  font-size: 1.1em;
+}
+.img-porto {
+  width: 100% !important;
+  background-size: 100%;
+}
+.btn-portofolio {
+  width: 100px !important;
+  height: 100px !important;
+}
+}
+
+@media screen and (min-width: 1024px) {
+  .bar-nav {
+    display: none;
+  }
+
+  .logo-nav {
+    font-size: 1.2em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    right: 0;
+    gap: 0;
+    width: auto;
+    height: 50px !important;
+    margin-left: 45%;
+    padding-inline: 0 !important;
+    font-size: .65em;
+    z-index: 99999;
+  }
+ .link-item {
+   margin-right: 0;
+ }
+  #contact {
+    display: flex;
+    flex-direction: row;
+  }
+  .isi-info-contact {
+    position: absolute;
+  top: 50%;
+  }
+.isi-popup-succ {
+  width: 350px;
+  height: 400px;
+}
+.container-footer {
+  display: flex;
+  flex-direction: row;
+}
+.decoration-block {
+  transform: rotate(2deg);
+}
+.title-project {
+  font-size: 1.5em;
+}
+.title-project-v1 {
+  font-size: 3em;
+}
+.link-project {
+  font-size: 1.1em;
+}
+.img-porto {
+  width: 100% !important;
+  background-size: 100%;
+}
+}

@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import "https://unpkg.com/transition-style";
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 !important;
+  padding: 0 !important; 
+  background: white;
+  overflow-x: hidden;
+}
+
+body, #root {
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  background: black;
+  color: white;
+}
+
+header {
+  width: 100%;
+  position: relative;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
+  user-select: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.con-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.5rem;
+  width: 100%;
+  background: #fff;
+  user-select: none;
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all .5s ease;
+}
+.nav-shadow {
+  box-shadow: 0 5px 5px rgba(0,0,0,.1);
+}
+nav .logo-nav {
+  position: absolute;
+  left: 0;
+  margin-left: 5%;
+  font-weight: 600;
+  color: black;
+}
+
+nav .logo-nav a {
+  color: black;
+}
+
+.bar-nav {
+  width: 25px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  margin-right: 5%;
+  border-radius: 2px;
+  transition: all .3s ease;
+}
+
+.bar-nav:active,
+.bar-nav:hover {
+  border: 1px solid black;
+}
+
+.nav-links {
+  display: flex;
+  width: 100%;
+  height: 30vh;
+  margin: 0;
+  padding: 0;
+  color: black;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
+  backdrop-filter: blur(5px);
+  transition: all .3s ease-in-out;
+  z-index: 999;
+}
+
+.nav-links label a {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: black;
+}
+
+.link-item {
+  letter-spacing: 4px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: black;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all .2s ease;
+  border-bottom: 2px solid transparent;
+}
+#textUserNav {
+  margin-top: 10px;
+  font-family:'Outfit', sans-serif;
+}
+#logout:hover {
+  background: black;
+  color:white;
+}
+#sign-in-btn:hover {
+  background: #39a2ff;
+  border-bottom: 0 !important;
+  color:white;
+}
+#sign-up-btn:hover {
+  background: transparent !important;
+  border: 1.5px solid #39a2ff !important;
+  color: black;
+}
+.link-item:hover {
+  background: transparent;
+  border-bottom: 2px solid black;
+  border-radius: 0;
+}
+
+.active {
+  background: transparent;
+  border-bottom: 2px solid black;
+  border-radius: 0;
+}
+#button-to-top {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 5%;
+  right: 3%;
+  border-radius: 50%;
+  background: rgba(189,204,255,.4);
+  backdrop-filter: blur(2px);
+  color: #000;
+  border: none;
+  display: flex;
+  opacity: 1;
+  transition: all .5s ease;
+  z-index: 99999;
+}
+#button-to-top.show {
+  opacity: 1;
+}
