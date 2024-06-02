@@ -100,7 +100,7 @@ useEffect(() => {
 }
 
 
-const Homepage = () => {
+const Homepage = ({logoTr, titleTr, subTr, btnTalkTr,  btnCvTr, conImgTalkTr}) => {
     return (
         <>
   {/* home page start */}
@@ -108,11 +108,11 @@ const Homepage = () => {
     <div id="bg-patern-home" />
     <div className="fill-home">
       <div className="animateWipe" transition-style="out:circle:top-right" />
-      <img src="welcome.svg" className="logo-home-isi" alt="logo" />
-      <label className="title" id="homeTitle">Welcome !</label>
+      <img src="welcome.svg" className="logo-home-isi {logoTr}" alt="logo" />
+      <label className="title {titleTr}" id="homeTitle">Welcome !</label>
       <label className="sub-title" id="homeSubtitle">
         <font className="hi-title">Hi I'm Justine</font> !<br />
-        <p className="px-3 m-0">Web developer || Front-end engineer || Designer</p>
+        <p className="px-3 m-0 {}">Web developer || Front-end engineer || Designer</p>
         <p className="px-3">Created with react + typescript</p>
       </label>
       <div className="d-flex flex-wrap">
@@ -446,6 +446,13 @@ const ContentHome = () => {
 
 const Home = () => {
     
+  const [logoTr, setLogoTr] = useState("");
+  const [titleTr, setTitleTr] = useState("");
+  const [subTr, setSubTr] = useState("");
+  const [btnTalkTr, setBtnTalkTr] = useState("");
+  const [btnCvTr, setBtnCvTr] = useState("");
+  const [conImgTalkTr, setConImgTalkTr] = useState("");
+
 function handleScrollUp() {
     /*if (isLogoTranslated) {
         logo.style.animation = "trasl 1.5s ease";
@@ -454,6 +461,8 @@ function handleScrollUp() {
         btnTalk.style.animation = "traslRight 2.5s ease";
         btnCv.style.animation = "traslRight 3s ease";
         conImgTalk.style.animation = "traslRight 3.5s ease";
+
+
         logo.classList.remove("translated");
         title.classList.remove("translatedRight");
         subtitle.classList.remove("translatedRight");
@@ -462,12 +471,19 @@ function handleScrollUp() {
         conImgTalk.classList.remove("translatedRight");
         isLogoTranslated = false;
     }*/
+
+    setLogoTr("trasl 1.5s ease")
+    setTitleTr("traslRight 1s ease")
+    setSubTr('traslRight 2s ease')
+    setBtnTalkTr('traslRight 2.5s ease')
+    setBtnCvTr("traslRight 3s ease")
+    setConImgTalkTr("traslRight 3.5s ease")
    //     alert('dd')
 }
     
   return (
       <>
-      <BtnBackToTop handleScrollUp={handleScrollUp} />
+      <BtnBackToTop handleScrollUp={handleScrollUp} logoTr={logoTr} titleTr={titleTr} subTr={subTr} btnTalkTr={btnTalkTr} btnCvTr={btnCvTr} conImgTalkTr={conImgTalkTr} />
       <HeaderNavbar />
       <ContentHome />
       <Footer />
