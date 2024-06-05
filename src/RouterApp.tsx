@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/landing-page/Home'
+import SignIn from './pages/auth/SignIn'
+import SignUp from './pages/auth/SignUp'
 import E404 from './pages/error/E404'
 
 function RouterApp() {
@@ -11,8 +12,8 @@ function RouterApp() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<Home />} />
-        <Route path="/auth/login" element={<Home />} />
-        <Route path="/auth/register" element={<Home />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="*" element={<E404 />} />
       </Routes>
      </Router>

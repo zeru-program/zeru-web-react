@@ -410,7 +410,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 
   height: 60px;
   margin-inline: 5px !important;
   padding: 0 !important;
-  background: #ffffff55 !important;
+  background: gray !important;
   color: white;
   border-radius: 50% !important;
   top: 50% !important;
@@ -559,7 +559,7 @@ background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 
   display: flex;
   flex-direction: column;
   width: 250px;
-  height: 180px;
+  height: 200px;
   text-align: left;
   padding-block: 10px;
   padding-inline: 10px;
@@ -568,6 +568,7 @@ background: linear-gradient(0deg, rgba(42,91,255,1) 0%, rgb(109,129,255) 100%);
   color: white;
   gap: 5px;
   border: 0;
+  flex: 0 0 auto;
   border-radius: 10px;
 }
 #fake-p-body::-webkit-scrollbar,
@@ -582,7 +583,9 @@ background: linear-gradient(0deg, rgba(42,91,255,1) 0%, rgb(109,129,255) 100%);
   height: auto;
   font-family: "Outfit", sans-serif;
 }
-
+.name-input {
+   color: #000;
+}
 .contact-information {
   display: flex;
   justify-content: center;
@@ -829,6 +832,194 @@ footer {
   opacity: 1;
 }
 
+
+/** auth **/
+
+.container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 500px;
+    background: #5b8ee5;
+    color: black;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.container-sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 650px;
+    background: #5b8ee5;
+    color: black;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+.con-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 95%;
+    background: #5b8ee5;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    border-radius: 30px 0 30px 0;
+}
+
+.con-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    font-family: "Poppins", Sans-Serif;
+    font-size: 0.8em;
+    bottom: 5%;
+}
+
+.con-input {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    text-align: left;
+    color: White;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+}
+
+.con-accept {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    margin-right: 30%;
+    font-size: 0.8em;
+    position: absolute;
+    left: 0;
+    bottom: -40px;
+    color: White;
+}
+
+.header-title {
+    text-align: center;
+    color: White;
+    font-weight: 1000;
+    font-family: "Poppins", sans-serif;
+    font-size: 2em;
+    position: absolute;
+    top: 0;
+}
+
+.inputOption {
+    border: none;
+    width: 250px;
+    height: 50px;
+    font-family: "Poppins", Sans-Serif;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: 2px solid white;
+    position: relative;
+}
+
+.con-hidden-pw {
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    gap: 0;
+    padding: 0;
+}
+
+.vis-pass {
+    width: 25px;
+    position: absolute;
+    right: 5%;
+    margin: 0;
+    cursor: pointer;
+}
+
+.wrong-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    width: 300px;
+    height: 300px;
+    background: white;
+    font-weight: 800;
+    border-radius: 3px;
+    position: fixed;
+    transform: scale(1);
+    animation: scalePopup 0.7s ease;
+}
+
+@keyframes scalePopup {
+    from {
+        transform: scale(0.7);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.cek-wrong {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+}
+
+.close-popup {
+    background: #e81a1a;
+    color: white;
+    font-weight: 800;
+    padding: 10px 30px;
+    border: 0;
+    border-radius: 5px;
+}
+
+.btn-login:active,
+.btn-login:hover {
+    transform: scale(0.95);
+    background: #526fe0;
+}
+
+.btn-login {
+    background: white;
+    border: 0;
+    padding: 10px 50px;
+    border-radius: 10px;
+    font-weight: 800;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+
+
+
 /*** shorcut ***/
 .d-flex {
   display: flex;
@@ -854,3 +1045,5 @@ footer {
 }
 .fix-padding-i {
 }
+
+
