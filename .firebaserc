@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "zerupgmm"
-  }
+    "default": "zerupgmm",
+    "staging": "zerupgmm"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

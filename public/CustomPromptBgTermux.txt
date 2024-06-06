@@ -1,0 +1,12 @@
+edit di "$PREFIX/etc/bash.bashrc" >>>
+*Prompt default*
+PS1='\[\e[32m\]\w\[\e[0m\] \$ '
+
+*Prompt Custom Keren*
+PS1='\[\e[1;96m\]╭──\[\e[0m\]\[\e[44;97m\] ➢ \w  \[\e[0m\]\n\[\e[1;96m\]╰─➤ \[\e[0m\]'
+<<<
+
+edit di "$HOME/.bashrc" >>>
+background custom
+echo -e "\e]11;#3E3E3E\a"
+<<<

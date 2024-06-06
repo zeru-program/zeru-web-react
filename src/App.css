@@ -1017,7 +1017,34 @@ form {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 }
 
+/*** source code ***/
+.con-desc-sc {
+    font-family: "Poppins", sans-serif;
+}
+.btn-download {
+    background: #8C6EFF;
+    color: #fff;
+}
 
+/*** dashboard ***/
+.todo {
+    gap: 0 !important;
+    margin-bottom: 50px;
+    background: ;
+    padding: 10px;
+}
+#table-project thead tr td {
+  padding-right: 70px;
+  padding-left: 10px;
+  padding-block: 10px;
+  background: #43c7e8;
+  text-wrap: nowrap;
+  text-align: left;
+  overflow-x: auto;
+}
+.temp-update-class {
+  background: rgba(139,110,255,.5);
+}
 
 
 /*** shorcut ***/
