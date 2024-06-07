@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 let urlDb = 'https://zerupgmm-default-rtdb.firebaseio.com/';
+import HeaderSc from "./HeaderSc"
 import Navbar from "../landing-page/Navbar"
 import Footer from "../landing-page/Footer"
 
@@ -56,6 +57,7 @@ const Content = () => {
 const SourceCode = () => {
     return (
         <>
+     <HeaderSc/>
      <Navbar/>
      <Content/>
      <Footer/>

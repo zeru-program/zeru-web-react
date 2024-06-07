@@ -180,7 +180,16 @@ main {
  /* home */
 #home {
   position: relative;
-  background: url("https://images.hdqwalls.com/wallpapers/blur-abstract-wa.jpg") no-repeat fixed center !important;
+  background-color:#99ffa0;
+background-image:
+radial-gradient(at 88% 58%, hsla(168950,61%,64%,1) 0px, transparent 50%),
+radial-gradient(at 73% 44%, hsla(329950,80%,66%,1) 0px, transparent 50%),
+radial-gradient(at 5% 20%, hsla(18950,93%,62%,1) 0px, transparent 50%),
+radial-gradient(at 1% 93%, hsla(111950,90%,78%,1) 0px, transparent 50%),
+radial-gradient(at 94% 43%, hsla(45950,61%,64%,1) 0px, transparent 50%),
+radial-gradient(at 81% 23%, hsla(106950,60%,62%,1) 0px, transparent 50%),
+radial-gradient(at 22% 92%, hsla(354950,83%,61%,1) 0px, transparent 50%);
+  /*background: url("https://images.hdqwalls.com/wallpapers/blur-abstract-wa.jpg") no-repeat fixed center !important;*/
   font-family: "Outfit", sans-serif;
 }
 #bg-patern-home {

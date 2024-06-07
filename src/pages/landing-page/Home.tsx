@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Header from "./Header"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import '../../App.css'
@@ -47,31 +48,29 @@ interface ContentHomeProps {
   aboutSubtitleTrClass: string;
 }
 
-const BtnBackToTop: React.FC<BtnBackToTopProps> = ({ handleScrollUp }) => {
+const BtnBackToTop: React.FC < BtnBackToTopProps > = ({
+    handleScrollUp
+}) => {
     const [btnBtt, setBtnBtt] = useState('')
-    
-// back to top btn
-document.addEventListener('scroll', () => {
-  if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-     setBtnBtt('show');
-  } else {
-      setBtnBtt('');
-  }
-})
-const handleBtt = (e: React.MouseEvent<HTMLButtonElement>): void => {
-  e.preventDefault();
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0;
-  handleScrollUp();
-}
-    
-    
-    return (
-        <>
+    // back to top btn
+    document.addEventListener('scroll', () => {
+        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+            setBtnBtt('show');
+        } else {
+            setBtnBtt('');
+        }
+    })
+    const handleBtt = (e: React.MouseEvent < HTMLButtonElement > ): void => {
+        e.preventDefault();
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0;
+        handleScrollUp();
+    }
+    return (<>
         {/* =============== button back to top ================ */}
-<button onClick={handleBtt} style={{display:"flex", justifyContent: "center", alignItems:"center"}} id="button-to-top" className={btnBtt}><i className="bi bi-arrow-up" /></button>
+    <button onClick={handleBtt} style={{display:"flex", justifyContent: "center", alignItems:"center"}} id="button-to-top" className={btnBtt}><i className="bi bi-arrow-up" /></button>
         </>
-    )
+        )
 }
 
 
@@ -104,37 +103,37 @@ const Homepage: React.FC<HomepageProps> = ({
     return (
         <>
   {/* home page start */}
-  <div className="container-page" id="home">
-  <div id="bg-patern-home" />
-  <div className="fill-home">
-    <div className="animateWipe" transition-style="out:circle:top-right" />
-    <img src="welcome.svg" className={`${logoTrClass} logo-home-isi`} style={{ animation: `${logoTr}` }} alt="logo" />
-    <label className={`${titleTrClass} title`} style={{ animation: `${titleTr}` }} id="homeTitle">Welcome !</label>
-    <label className={`${subTrClass} sub-title`} id="homeSubtitle" style={{ animation: `${subTr}` }}>
-      <span className="hi-title">Hi I'm Justine</span> !<br />
-      <p className="px-3 m-0">Web developer || Front-end engineer || Designer</p>
-      <p className="px-3">Created with react + typescript</p>
-    </label>
-    <div className="d-flex flex-wrap">
-      <button className={`${btnTalkTrClass} btn-talk`} style={{ animation: `${btnTalkTr}` }} onClick={() => window.location.href="/#contact"}>Let's Talk</button>
-      <button className={`${btnCvTrClass} btn-cv`} style={{ paddingInline: "8px !important", animation: `${btnCvTr}` }} onClick={handleCv}>Download CV</button>
-    </div>
-    <div className={`${conImgTalkTrClass} con-img-tal`} style={{ animation: `${conImgTalkTr}`, display: "flex" }}>
-     <div className="img-talk-con">
-     <i onClick={() => window.location.href = 'https://api.whatsapp.com/send?phone=6287774487198'} className="img-talk-social bi bi-whatsapp"></i>
+   <div className="container-page" id="home">
+     <div id="bg-patern-home" />
+     <div className="fill-home">
+         <div className="animateWipe" transition-style="out:circle:top-right" />
+         <img src="welcome.svg" className={`${logoTrClass} logo-home-isi`} style={{ animation: `${logoTr}` }} alt="logo" />
+         <label className={`${titleTrClass} title`} style={{ animation: `${titleTr}` }} id="homeTitle">Welcome !</label>
+         <label className={`${subTrClass} sub-title`} id="homeSubtitle" style={{ animation: `${subTr}` }}>
+             <span className="hi-title">Hi I'm Justine</span> !<br />
+             <p className="px-3 m-0">Web developer || Front-end engineer || Designer</p>
+             <p className="px-3">Created with react + typescript</p>
+         </label>
+         <div className="d-flex flex-wrap">
+             <button className={`${btnTalkTrClass} btn-talk`} style={{ animation: `${btnTalkTr}` }} onClick={()=> window.location.href="/#contact"}>Let's Talk</button>
+             <button className={`${btnCvTrClass} btn-cv`} style={{ paddingInline: "8px !important", animation: `${btnCvTr}` }} onClick={handleCv}>Download CV</button>
+         </div>
+         <div className={`${conImgTalkTrClass} con-img-tal`} style={{ animation: `${conImgTalkTr}`, display: "flex" }}>
+             <div className="img-talk-con">
+                 <i onClick={()=> window.location.href = 'https://api.whatsapp.com/send?phone=6287774487198'} className="img-talk-social bi bi-whatsapp"></i>
+             </div>
+             <div className="img-talk-con">
+                 <i onClick={()=> window.location.href = 'https://www.instagram.com/zerr.ace/'} className="img-talk-social bi bi-instagram"></i>
+             </div>
+             <div className="img-talk-con">
+                 <i onClick={()=> window.location.href = 'mailto:zeruprogram@gmail.com?subject=HiZeru!'} className="img-talk-social bi bi-envelope"></i>
+             </div>
+         </div>
      </div>
-     <div className="img-talk-con">
-    <i onClick={() => window.location.href = 'https://www.instagram.com/zerr.ace/'} className="img-talk-social bi bi-instagram"></i>
-     </div>
-     <div className="img-talk-con">
-    <i onClick={() => window.location.href = 'mailto:zeruprogram@gmail.com?subject=HiZeru!'} className="img-talk-social bi bi-envelope"></i>
-     </div>
-    </div>
-  </div>
-  <svg className="waves-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    <path fill="#ffffff" fillOpacity={1} d="M0,160L48,170.7C96,181,192,203,288,213.3C384,224,480,224,576,213.3C672,203,768,181,864,176C960,171,1056,181,1152,181.3C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
-  </svg>
-</div>
+     <svg className="waves-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+         <path fill="#ffffff" fillOpacity={1} d="M0,160L48,170.7C96,181,192,203,288,213.3C384,224,480,224,576,213.3C672,203,768,181,864,176C960,171,1056,181,1152,181.3C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
+     </svg>
+ </div>
   {/* home page end */}
         </>
     )
@@ -713,6 +712,7 @@ if (aboutElement && typeof aboutElement.offsetTop === 'number') {
 
   return (
       <>
+      <Header/>
       <BtnBackToTop handleScrollUp={handleScrollUp} />
       <Navbar />
       <ContentHome  logoTr={logoTr} titleTr={titleTr} subTr={subTr} btnTalkTr={btnTalkTr} btnCvTr={btnCvTr} conImgTalkTr={conImgTalkTr} logoTrClass={logoTrClass} titleTrClass={titleTrClass} subTrClass={subTrClass} btnTalkTrClass={btnTalkTrClass} btnCvTrClass={btnCvTrClass} conImgTalkTrClass={conImgTalkTrClass} aboutTitleTr={aboutTitleTr} aboutTitleTrClass={aboutTitleTrClass} aboutSubtitleTrClass={aboutSubtitleTrClass} />

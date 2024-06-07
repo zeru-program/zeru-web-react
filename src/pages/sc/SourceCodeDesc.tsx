@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState} from "react"
 let urlDb = 'https://zerupgmm-default-rtdb.firebaseio.com/';
+import HeaderScDesc from "./HeaderScDesc"
 import Navbar from "../landing-page/Navbar"
 import Footer from "../landing-page/Footer"
 
@@ -35,9 +36,9 @@ const SourceCodeDesc = () => {
   }, [id]);
 
   if (!result) {
-    return <div>Data not found</div>;
+    return null; // or some fallback UI
   }
-    
+
     
     const handleDownload = (url: string) => {
         const replaceU = url.replace("/", "")
@@ -52,6 +53,7 @@ const SourceCodeDesc = () => {
   
   return (
       <>
+    <HeaderScDesc/>
     <Navbar/>
     <img src="/bgcode1.jpg" style={{width:"100%"}}/>
     <div className="my-3 con-desc-sc px-3 container" style={{wordBreak:"break-word"}}>
