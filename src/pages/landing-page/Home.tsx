@@ -1,725 +1,1063 @@
-import React, { useState, useEffect } from 'react'
-import Header from "./Header"
-import Navbar from "./Navbar"
-import Footer from "./Footer"
-import '../../App.css'
-import '../../Responsive.css'
+import React, { useState, useEffect } from "react";
+import { CircularProgressbarWithChildren } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import Header from "./Header";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import "../../App.css";
+import "../../Responsive.css";
 
 interface BtnBackToTopProps {
-  handleScrollUp: () => void;
+    handleScrollUp: () => void;
 }
 
 interface HomepageProps {
-  logoTr: string;
-  titleTr: string;
-  subTr: string;
-  btnTalkTr: string;
-  btnCvTr: string;
-  conImgTalkTr: string;
-  logoTrClass: string;
-  titleTrClass: string;
-  subTrClass: string;
-  btnTalkTrClass: string;
-  btnCvTrClass: string;
-  conImgTalkTrClass: string;
+    titleTr: string;
+    subTr: string;
+    btnTalkTr: string;
+    btnCvTr: string;
+    conImgTalkTr: string;
+    titleTrClass: string;
+    subTrClass: string;
+    btnTalkTrClass: string;
+    btnCvTrClass: string;
+    conImgTalkTrClass: string;
 }
 
 interface AboutUsProps {
-  aboutTitleTr: string;
-  aboutTitleTrClass: string;
-  aboutSubtitleTrClass: string;
+    aboutTitleTr: string;
+    aboutTitleTrClass: string;
+    aboutSubtitleTrClass: string;
 }
 
 interface ContentHomeProps {
-  logoTr: string;
-  titleTr: string;
-  subTr: string;
-  btnTalkTr: string;
-  btnCvTr: string;
-  conImgTalkTr: string;
-  logoTrClass: string;
-  titleTrClass: string;
-  subTrClass: string;
-  btnTalkTrClass: string;
-  btnCvTrClass: string;
-  conImgTalkTrClass: string;
-  aboutTitleTr: string;
-  aboutTitleTrClass: string;
-  aboutSubtitleTrClass: string;
+    titleTr: string;
+    subTr: string;
+    btnTalkTr: string;
+    btnCvTr: string;
+    conImgTalkTr: string;
+    titleTrClass: string;
+    subTrClass: string;
+    btnTalkTrClass: string;
+    btnCvTrClass: string;
+    conImgTalkTrClass: string;
+    aboutTitleTr: string;
+    aboutTitleTrClass: string;
+    aboutSubtitleTrClass: string;
 }
 
-const BtnBackToTop: React.FC < BtnBackToTopProps > = ({
-    handleScrollUp
-}) => {
-    const [btnBtt, setBtnBtt] = useState('')
+const BtnBackToTop: React.FC<BtnBackToTopProps> = ({ handleScrollUp }) => {
+    const [btnBtt, setBtnBtt] = useState("");
     // back to top btn
-    document.addEventListener('scroll', () => {
-        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-            setBtnBtt('show');
+    document.addEventListener("scroll", () => {
+        if (
+            document.body.scrollTop > 500 ||
+            document.documentElement.scrollTop > 500
+        ) {
+            setBtnBtt("show");
         } else {
-            setBtnBtt('');
+            setBtnBtt("");
         }
-    })
-    const handleBtt = (e: React.MouseEvent < HTMLButtonElement > ): void => {
+    });
+    const handleBtt = (e: React.MouseEvent<HTMLButtonElement>): void => {
         e.preventDefault();
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0;
         handleScrollUp();
-    }
-    return (<>
-        {/* =============== button back to top ================ */}
-    <button onClick={handleBtt} style={{display:"flex", justifyContent: "center", alignItems:"center"}} id="button-to-top" className={btnBtt}><i className="bi bi-arrow-up" /></button>
+    };
+    return (
+        <>
+            {/* =============== button back to top ================ */}
+            <button
+                onClick={handleBtt}
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}
+                id="button-to-top"
+                className={btnBtt}
+            >
+                <i className="bi bi-arrow-up" />
+            </button>
         </>
-        )
-}
-
-
+    );
+};
 
 const Homepage: React.FC<HomepageProps> = ({
-  logoTr,
-  titleTr,
-  subTr,
-  btnTalkTr,
-  btnCvTr,
-  conImgTalkTr,
-  logoTrClass,
-  titleTrClass,
-  subTrClass,
-  btnTalkTrClass,
-  btnCvTrClass,
-  conImgTalkTrClass
+    titleTr,
+    subTr,
+    btnTalkTr,
+    btnCvTr,
+    conImgTalkTr,
+    titleTrClass,
+    subTrClass,
+    btnTalkTrClass,
+    btnCvTrClass,
+    conImgTalkTrClass
 }) => {
     const handleCv = () => {
-        
-  const anchor = document.createElement('a');
-  anchor.href = "JUSTINE_CV_2024_BOGOR_INDONESIA.pdf";
-  anchor.download = "JUSTINE_CV_2024_BOGOR_INDONESIA.pdf";
+        const anchor = document.createElement("a");
+        anchor.href = "JUSTINE_CV_2024_BOGOR_INDONESIA.pdf";
+        anchor.download = "JUSTINE_CV_2024_BOGOR_INDONESIA.pdf";
 
-  document.body.appendChild(anchor);
-  anchor.click();
-  document.body.removeChild(anchor);
-    }
-    
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+    };
+
     return (
         <>
-  {/* home page start */}
-   <div className="container-page" id="home">
-     <div id="bg-patern-home" />
-     <div className="fill-home">
-         <div className="animateWipe" transition-style="out:circle:top-right" />
-         <img src="welcome.svg" className={`${logoTrClass} logo-home-isi`} style={{ animation: `${logoTr}` }} alt="logo" />
-         <label className={`${titleTrClass} title`} style={{ animation: `${titleTr}` }} id="homeTitle">Welcome !</label>
-         <label className={`${subTrClass} sub-title`} id="homeSubtitle" style={{ animation: `${subTr}` }}>
-             <span className="hi-title">Hi I'm Justine</span> !<br />
-             <p className="px-3 m-0">Web developer || Front-end engineer || Designer</p>
-             <p className="px-3">Created with react + typescript</p>
-         </label>
-         <div className="d-flex flex-wrap">
-             <button className={`${btnTalkTrClass} btn-talk`} style={{ animation: `${btnTalkTr}` }} onClick={()=> window.location.href="/#contact"}>Let's Talk</button>
-             <button className={`${btnCvTrClass} btn-cv`} style={{ paddingInline: "8px !important", animation: `${btnCvTr}` }} onClick={handleCv}>Download CV</button>
-         </div>
-         <div className={`${conImgTalkTrClass} con-img-tal`} style={{ animation: `${conImgTalkTr}`, display: "flex" }}>
-             <div className="img-talk-con">
-                 <i onClick={()=> window.location.href = 'https://api.whatsapp.com/send?phone=6287774487198'} className="img-talk-social bi bi-whatsapp"></i>
-             </div>
-             <div className="img-talk-con">
-                 <i onClick={()=> window.location.href = 'https://www.instagram.com/zerr.ace/'} className="img-talk-social bi bi-instagram"></i>
-             </div>
-             <div className="img-talk-con">
-                 <i onClick={()=> window.location.href = 'mailto:zeruprogram@gmail.com?subject=HiZeru!'} className="img-talk-social bi bi-envelope"></i>
-             </div>
-         </div>
-     </div>
-     <svg className="waves-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-         <path fill="#ffffff" fillOpacity={1} d="M0,160L48,170.7C96,181,192,203,288,213.3C384,224,480,224,576,213.3C672,203,768,181,864,176C960,171,1056,181,1152,181.3C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" />
-     </svg>
- </div>
-  {/* home page end */}
+            {/* home page start */}
+            <div className="container-page-home" id="home">
+                <div id="bg-patern-home" />
+                <div className="fill-home">
+                    <div
+                        className="animateWipe"
+                        transition-style="out:circle:top-right"
+                    />
+                    <label
+                        className={`${titleTrClass} title`}
+                        style={{ animation: `${titleTr}` }}
+                        id="homeTitle"
+                    >
+                        Welcome !
+                    </label>
+                    <label
+                        className={`${subTrClass} sub-title`}
+                        id="homeSubtitle"
+                        style={{ animation: `${subTr}` }}
+                    >
+                        <span className="hi-title">Hi I'm Justine</span> !<br />
+                        <p className="px-3 m-0">
+                            Web developer || App developer junior || Designer
+                        </p>
+                        <p className="px-3">Created with react + typescript</p>
+                    </label>
+                    <div className="d-flex flex-wrap">
+                        <button
+                            className={`${btnTalkTrClass} btn-talk`}
+                            style={{ animation: `${btnTalkTr}` }}
+                            onClick={() => (window.location.href = "/contact")}
+                        >
+                            Let's Talk
+                        </button>
+                        <button
+                            className={`${btnCvTrClass} btn-cv`}
+                            style={{
+                                paddingInline: "8px !important",
+                                animation: `${btnCvTr}`
+                            }}
+                            onClick={handleCv}
+                        >
+                            Download CV
+                        </button>
+                    </div>
+                    <div
+                        className={`${conImgTalkTrClass} con-img-tal`}
+                        style={{
+                            animation: `${conImgTalkTr}`,
+                            display: "flex"
+                        }}
+                    >
+                        <div className="img-talk-con">
+                            <i
+                                onClick={() =>
+                                    (window.location.href =
+                                        "https://api.whatsapp.com/send?phone=6287774487198")
+                                }
+                                className="img-talk-social bi bi-whatsapp"
+                            ></i>
+                        </div>
+                        <div className="img-talk-con">
+                            <i
+                                onClick={() =>
+                                    (window.location.href =
+                                        "https://www.instagram.com/zerr.ace/")
+                                }
+                                className="img-talk-social bi bi-instagram"
+                            ></i>
+                        </div>
+                        <div className="img-talk-con">
+                            <i
+                                onClick={() =>
+                                    (window.location.href =
+                                        "mailto:zeruprogram@gmail.com?subject=HiZeru!")
+                                }
+                                className="img-talk-social bi bi-envelope"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+                <svg
+                    className="waves-home"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 1440 320"
+                >
+                    <path
+                        fill="#fff"
+                        fillOpacity={1}
+                        d="M0,160L48,170.7C96,181,192,203,288,213.3C384,224,480,224,576,213.3C672,203,768,181,864,176C960,171,1056,181,1152,181.3C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                    />
+                </svg>
+            </div>
+            {/* home page end */}
         </>
-    )
-}
+    );
+};
 
-const AboutUs: React.FC<AboutUsProps> = ({ aboutTitleTr, aboutTitleTrClass, aboutSubtitleTrClass }) => {
+const AboutUs: React.FC<AboutUsProps> = ({
+    aboutTitleTr,
+    aboutTitleTrClass,
+    aboutSubtitleTrClass
+}) => {
     return (
         <>
-  {/* about page start */}
-  <div className="container-page" id="about">
-    <label className={`title ${aboutTitleTrClass}`} id="aboutTitle" style={{animation:`${aboutTitleTr}`}} >About zeru</label>
-    <p className={`sub-title px-3 ${aboutSubtitleTrClass}`} id="aboutSubtitle" style={{paddingInline :"15px !important"}}>
-      I am Justine, the student who created this Zeru website.
-      This website was created or worked on in January 2024 and
-      released in February 2024. With my sufficient skills, I
-      created parallax effects on my website. Also prioritize the
-      existing user interface and user experience. I am adequate
-      in the field of front-end web developer. By moving towards
-      the field of full-stack developer, I am now studying backend
-      web development. Now I will be 15 years old in 2024 and
-      studying at SMPN 10 BOGOR, WEST JAVA. Apart from creating
-      websites, I also have creative skills in making films,
-      existing photos and designs, as well as video editing.
-      Thinking creatively and with high integrity is the my
-      vision.
-    </p>
-  </div>
-  {/* about page end */}
+            {/* about page start */}
+            <div className="container-page position-relative" id="about">
+                <label
+                    className={`title ${aboutTitleTrClass}`}
+                    id="aboutTitle"
+                    style={{ animation: `${aboutTitleTr}` }}
+                >
+                    What do you think about zeru?
+                </label>
+                <p
+                    className={`sub-title px-3 ${aboutSubtitleTrClass}`}
+                    id="aboutSubtitle"
+                    style={{ paddingInline: "15px !important" }}
+                >
+                    I am Justine, the student who created this Zeru website.
+                    This website was created or worked on in January 2024 and
+                    released in February 2024. With my sufficient skills, I
+                    created parallax effects on my website. Also prioritize the
+                    existing user interface and user experience. I am adequate
+                    in the field of front-end web developer. By moving towards
+                    the field of full-stack developer, I am now studying backend
+                    web development. Apart from creating websites, I also have
+                    creative skills in making films, existing photos and
+                    designs, as well as video editing. Thinking creatively and
+                    with high integrity is the my vision.
+                </p>
+            </div>
+            {/* about page end */}
         </>
-    )
-}
+    );
+};
 
 const Skils = () => {
-   return (
-       <>
-  {/* skils page start */}
-  <div className="container-page" style={{paddingInline :"10px !important"}} id="skils">
-    <label className="title" id="skilTitle">What are my skills?</label>
-    <label className="sub-title">my skills that I currently have</label>
-    {/* box */}
-    <div className="con-box-skil">
-      <div className="box">
-        <img src="html.png" className="img-skil" alt="" />
-        <p className="desk-skil">
-          Saya sudah mahir dalam menuliskan code HTML5 maupun HTML semantic baik itu pembuatan navbar, form, tabel, dan lainnya. Hampir seluruh projek saya dibuat dengan HTML.
-        </p>
-      </div>
-      <div className="box">
-        <img src="css.png" className="img-skil" alt="" />
-        <p className="desk-skil">
-          Saya mahir dalam mendesign website yang responsive dan tentu saja modern. Dengan mempunyai pengalaman dan skill memakai framework css seperti bootstrap, dan tallwind, serta mampu mengkomunikasikan library untuk memperindah web saya.
-        </p>
-      </div>
-      <div className="box">
-        <img src="js.png" className="img-skil" alt="" />
-        <p className="desk-skil">
-          Saya memiliki keterampilan dalam mendesign logika dan implementasi system untuk website saya. Dan juga memiliki ide kreatif dalam menyelesaikan debugging, mahir juga dalam menguasai framework javascript berupa jquery, react. Serta mengkomunikasikan library js untuk web saya. 
-        </p>
-      </div>
-      <div className="box">
-        <img src="gnu-bash.png" className="img-skil" alt="" />
-        <p className="desk-skil">
-          Saya memiliki keterampilan yang cukup baik dalam mendesain dan membuat aplikasi sederhana dalam script "sh", dengan menjalankannya di termux.
-        </p>
-      </div>
-      <div className="box">
-        <img src="php.png" className="img-skil" alt="" />
-        <p className="desk-skil">
-          Selain memiliki keahlian html js saya juga memiliki kemampuan dalam bahasa PHP web server, baik mengintegrasikan database mysql, maupun mendesign halaman dan logika secara awam. Serta memiliki pengetahuan dan pengalaman dalam framework Laravel dan Codeingiter.
-        </p>
-      </div>
-      <div className="box">
-        <img src="git.png" className="img-skil" alt="" />
-        <p className="desk-skil">
-          Saya memiliki keterampilan dalam menyelesaikan dan menjalankan program git ini baik di termux (android) maupun windows. Dengan mengintegrasikan dari github dan gitlab itu cukup memudahkan pengembangan web saya. Dengan code git yang saya tahu, seperti push, clone, commit, branch, merge dan lainnya.
-        </p>
-      </div>
-      <div className="box">
-        <img src="db.png" className="img-skil" alt="" />
-        <p className="desk-skil">
-          Mahir dalam menyusun atau pun mendesign struktur database yang ada, dengan memahami berbagai jenis database. Berpengalaman memakai databae berupa sql contohnya mysql/mariadb, dan non sql contohnya spreadsheets berbentuk API, Firebase, Json.
-        </p>
-      </div>
-      <div className="box">
-        <img src="api.png" className="img-skil" alt="" />
-        <p className="desk-skil">
-          Memiliki pengetahuan berkomunikasi dalam integrisasi API untuk menghubungkan ke website saya.
-        </p>
-      </div>
-    </div>
-  </div>
-  {/* skils page end */}
-       </>
-   )
-}
+    return (
+        <>
+            {/* skils page start */}
+            <section className="container-page-skil" id="skils">
+                <div
+                    className="d-flex justify-content-center align-items-center flex-column"
+                    style={{ paddingInline: "10px !important" }}
+                >
+                    <label className="title" id="skilTitle">
+                        mySkils
+                    </label>
+                </div>
+                <div className="container mt-3" id="">
+                    <p className="m-0">Popular framework that i use</p>
+                    <div className="d-flex gap-3">
+                        {/* react */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            enable-background="new 0 0 128 128"
+                            viewBox="0 0 128 128"
+                            width="50"
+                            height="50"
+                            id="react"
+                        >
+                            <g fill="#61DAFB">
+                                <circle cx="64" cy="64" r="11.4"></circle>
+                                <path d="M107.3 45.2c-2.2-.8-4.5-1.6-6.9-2.3.6-2.4 1.1-4.8 1.5-7.1 2.1-13.2-.2-22.5-6.6-26.1-1.9-1.1-4-1.6-6.4-1.6-7 0-15.9 5.2-24.9 13.9-9-8.7-17.9-13.9-24.9-13.9-2.4 0-4.5.5-6.4 1.6-6.4 3.7-8.7 13-6.6 26.1.4 2.3.9 4.7 1.5 7.1-2.4.7-4.7 1.4-6.9 2.3-12.5 4.8-19.3 11.4-19.3 18.8s6.9 14 19.3 18.8c2.2.8 4.5 1.6 6.9 2.3-.6 2.4-1.1 4.8-1.5 7.1-2.1 13.2.2 22.5 6.6 26.1 1.9 1.1 4 1.6 6.4 1.6 7.1 0 16-5.2 24.9-13.9 9 8.7 17.9 13.9 24.9 13.9 2.4 0 4.5-.5 6.4-1.6 6.4-3.7 8.7-13 6.6-26.1-.4-2.3-.9-4.7-1.5-7.1 2.4-.7 4.7-1.4 6.9-2.3 12.5-4.8 19.3-11.4 19.3-18.8s-6.8-14-19.3-18.8zm-14.8-30.5c4.1 2.4 5.5 9.8 3.8 20.3-.3 2.1-.8 4.3-1.4 6.6-5.2-1.2-10.7-2-16.5-2.5-3.4-4.8-6.9-9.1-10.4-13 7.4-7.3 14.9-12.3 21-12.3 1.3 0 2.5.3 3.5.9zm-11.2 59.3c-1.8 3.2-3.9 6.4-6.1 9.6-3.7.3-7.4.4-11.2.4-3.9 0-7.6-.1-11.2-.4-2.2-3.2-4.2-6.4-6-9.6-1.9-3.3-3.7-6.7-5.3-10 1.6-3.3 3.4-6.7 5.3-10 1.8-3.2 3.9-6.4 6.1-9.6 3.7-.3 7.4-.4 11.2-.4 3.9 0 7.6.1 11.2.4 2.2 3.2 4.2 6.4 6 9.6 1.9 3.3 3.7 6.7 5.3 10-1.7 3.3-3.4 6.6-5.3 10zm8.3-3.3c1.5 3.5 2.7 6.9 3.8 10.3-3.4.8-7 1.4-10.8 1.9 1.2-1.9 2.5-3.9 3.6-6 1.2-2.1 2.3-4.2 3.4-6.2zm-25.6 27.1c-2.4-2.6-4.7-5.4-6.9-8.3 2.3.1 4.6.2 6.9.2 2.3 0 4.6-.1 6.9-.2-2.2 2.9-4.5 5.7-6.9 8.3zm-18.6-15c-3.8-.5-7.4-1.1-10.8-1.9 1.1-3.3 2.3-6.8 3.8-10.3 1.1 2 2.2 4.1 3.4 6.1 1.2 2.2 2.4 4.1 3.6 6.1zm-7-25.5c-1.5-3.5-2.7-6.9-3.8-10.3 3.4-.8 7-1.4 10.8-1.9-1.2 1.9-2.5 3.9-3.6 6-1.2 2.1-2.3 4.2-3.4 6.2zm25.6-27.1c2.4 2.6 4.7 5.4 6.9 8.3-2.3-.1-4.6-.2-6.9-.2-2.3 0-4.6.1-6.9.2 2.2-2.9 4.5-5.7 6.9-8.3zm22.2 21l-3.6-6c3.8.5 7.4 1.1 10.8 1.9-1.1 3.3-2.3 6.8-3.8 10.3-1.1-2.1-2.2-4.2-3.4-6.2zm-54.5-16.2c-1.7-10.5-.3-17.9 3.8-20.3 1-.6 2.2-.9 3.5-.9 6 0 13.5 4.9 21 12.3-3.5 3.8-7 8.2-10.4 13-5.8.5-11.3 1.4-16.5 2.5-.6-2.3-1-4.5-1.4-6.6zm-24.7 29c0-4.7 5.7-9.7 15.7-13.4 2-.8 4.2-1.5 6.4-2.1 1.6 5 3.6 10.3 6 15.6-2.4 5.3-4.5 10.5-6 15.5-13.8-4-22.1-10-22.1-15.6zm28.5 49.3c-4.1-2.4-5.5-9.8-3.8-20.3.3-2.1.8-4.3 1.4-6.6 5.2 1.2 10.7 2 16.5 2.5 3.4 4.8 6.9 9.1 10.4 13-7.4 7.3-14.9 12.3-21 12.3-1.3 0-2.5-.3-3.5-.9zm60.8-20.3c1.7 10.5.3 17.9-3.8 20.3-1 .6-2.2.9-3.5.9-6 0-13.5-4.9-21-12.3 3.5-3.8 7-8.2 10.4-13 5.8-.5 11.3-1.4 16.5-2.5.6 2.3 1 4.5 1.4 6.6zm9-15.6c-2 .8-4.2 1.5-6.4 2.1-1.6-5-3.6-10.3-6-15.6 2.4-5.3 4.5-10.5 6-15.5 13.8 4 22.1 10 22.1 15.6 0 4.7-5.8 9.7-15.7 13.4z"></path>
+                            </g>
+                        </svg>
+                        {/*sveltve*/}
+                        <svg
+                            width="50"
+                            height="50"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 128 128"
+                        >
+                            <path
+                                d="M 110.43093,16.935847 C 98.552474,-0.076153 75.089104,-5.118154 58.130818,5.695846 l -29.793,19.000001 c -4.030441,2.529 -7.488786,5.871 -10.15468,9.814 -2.665895,3.943 -4.479469,8.399 -5.325138,13.083 a 25.478172,30.64 0 0 0 -0.572094,6.396 c 0.0183,5.831 1.446866,11.571 4.163485,16.729995 -2.546986,3.87201 -4.285721,8.22 -5.110602,12.78201 a 25.347621,30.483 0 0 0 0.345086,14.41199 c 1.072679,4.732998 3.078336,9.203998 5.900559,13.151998 11.877618,17.011 35.393374,22.053 52.299272,11.24 l 29.762238,-19.001 c 4.027946,-2.532 7.482126,-5.877998 10.141386,-9.824998 2.65841,-3.947 4.46282,-8.40699 5.29686,-13.093 0.3825,-2.107 0.57458,-4.244 0.5721,-6.386 -0.007,-5.81999 -1.41778,-11.550995 -4.11194,-16.708995 2.54616,-3.869 4.28489,-8.213 5.11143,-12.771 0.36921,-2.109 0.55713,-4.245 0.56212,-6.386 0.002,-7.595 -2.37152,-15 -6.78697,-21.178 z"
+                                fill="#ff3e00"
+                                id="path598"
+                                style={{ strokeWidth: "0.911885" }}
+                            />
+                            <path
+                                d="m 55.218941,112.66204 a 28.463375,34.23 0 0 1 -5.953776,0.76 c -3.820895,0.001 -7.585244,-0.925 -10.970416,-2.7 -3.384341,-1.774 -6.288887,-4.343 -8.464177,-7.487 -2.655917,-3.716 -4.082827,-8.171 -4.080332,-12.74 a 15.657767,18.83 0 0 1 0.332613,-3.833 15.424937,18.55 0 0 1 0.719276,-2.782 l 0.562116,-1.708 1.51921,1.156 c 3.528195,2.591 7.470493,4.564 11.658097,5.834 l 1.104275,0.333 -0.103941,1.104 v 0.573 c -0.0025,1.381 0.427408,2.73 1.228174,3.854 0.646933,0.958 1.51838,1.744 2.537839,2.288 a 8.2621121,9.936 0 0 0 3.311997,0.837 8.2513022,9.923 0 0 0 1.79029,-0.229 7.2717563,8.745 0 0 0 1.832699,-0.802 l 29.760566,-19.094 c 0.892236,-0.566 1.627311,-1.349 2.135377,-2.276 0.507236,-0.927 0.771662,-1.968 0.768337,-3.026 -0.0084,-1.381 -0.449027,-2.725 -1.259773,-3.844 -0.656912,-0.946 -1.533347,-1.718 -2.553637,-2.252 a 8.3128357,9.997 0 0 0 -3.307008,-0.81 8.246313,9.917 0 0 0 -1.79029,0.23 6.9383115,8.344 0 0 0 -1.821058,0.801 l -11.346268,7.25 a 24.375558,29.314 0 0 1 -6.04774,2.656 c -1.945787,0.502 -3.945624,0.758 -5.954608,0.76 -3.820063,0 -7.582749,-0.926 -10.967089,-2.698 -3.384341,-1.772 -6.289718,-4.338 -8.467502,-7.478 -2.652591,-3.718 -4.079502,-8.172 -4.080334,-12.74 0.0016,-1.285 0.113089,-2.567 0.332615,-3.833 0.509728,-2.816 1.597374,-5.495 3.196411,-7.867 1.598207,-2.373 3.67205,-4.387 6.089317,-5.914 l 29.792168,-18.99 c 1.869286,-1.19 3.908205,-2.09 6.04774,-2.667 1.945787,-0.499 3.945625,-0.75 5.953776,-0.75 3.82921,-0.01 7.603538,0.91 10.999519,2.681 3.395981,1.77 6.311338,4.34 8.497439,7.486 2.636787,3.727 4.045417,8.184 4.028777,12.75 a 15.748404,18.939 0 0 1 -0.33344,3.844 15.407475,18.529 0 0 1 -0.71845,2.781 l -0.56211,1.708 -1.519216,-1.114 c -3.525699,-2.595 -7.468833,-4.568 -11.658096,-5.834 l -1.104275,-0.343 0.103941,-1.105 v -0.572 c 0,-1.385 -0.429072,-2.735 -1.228174,-3.865 -0.65608,-0.945 -1.530022,-1.716 -2.549481,-2.25 a 8.3086779,9.992 0 0 0 -3.301186,-0.813 8.2213671,9.887 0 0 0 -1.768671,0.271 6.8185708,8.2 0 0 0 -1.831867,0.802 l -29.792165,18.99 a 5.8797701,7.071 0 0 0 -1.836857,1.79 4.7505482,5.713 0 0 0 -0.962914,2.377 5.0365955,6.057 0 0 0 -0.135541,1.104 c -8.31e-4,1.378 0.42824,2.722 1.228174,3.844 0.655248,0.945 1.530021,1.717 2.548649,2.25 a 8.2986996,9.98 0 0 0 3.301186,0.812 8.2471446,9.918 0 0 0 1.79029,-0.23 6.9433007,8.35 0 0 0 1.832699,-0.801 l 11.367057,-7.292 a 24.218399,29.125 0 0 1 6.04774,-2.656 28.52574,34.305 0 0 1 5.953776,-0.76 c 3.821727,0 7.586076,0.925 10.972078,2.697 3.386003,1.772 6.293877,4.339 8.473325,7.48 2.652591,3.717 4.079498,8.171 4.080338,12.74 0.003,1.299 -0.11226,2.596 -0.34343,3.874 -0.506403,2.817 -1.594046,5.497 -3.192254,7.87 -1.599037,2.372 -3.673715,4.385 -6.093476,5.911 l -29.739779,18.99 a 24.308205,29.233 0 0 1 -6.057719,2.667 z"
+                                fill="#ffffff"
+                                id="path600"
+                                style={{ strokeWidth: "0.911885" }}
+                            />
+                        </svg>
+                        {/*laravel*/}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlnsXlink="http://www.w3.org/1999/xlink"
+                            width="50"
+                            height="50"
+                            viewBox="0 0 128 128"
+                            version="1.1"
+                        >
+                            <g id="surface1">
+                                <path
+                                    style={{
+                                        stroke: "none",
+                                        fillRule: "nonzero",
+                                        fill: "rgb(94.117647%,32.54902%,25.098039%)",
+                                        fillOpacity: "1"
+                                    }}
+                                    d="M 26.027344 0.136719 C 25.824219 0.214844 20.085938 3.484375 13.28125 7.394531 C 5.035156 12.136719 0.800781 14.632812 0.574219 14.867188 C 0.394531 15.070312 0.191406 15.421875 0.128906 15.644531 C -0.0429688 16.21875 -0.0546875 100.347656 0.117188 100.953125 C 0.179688 101.1875 0.382812 101.53125 0.566406 101.722656 C 1.011719 102.191406 50.238281 130.496094 50.835938 130.632812 C 51.113281 130.699219 51.425781 130.6875 51.734375 130.601562 C 52.40625 130.433594 101.503906 102.191406 101.941406 101.730469 C 102.121094 101.53125 102.324219 101.1875 102.390625 100.953125 C 102.476562 100.675781 102.507812 96.277344 102.507812 87.015625 L 102.507812 73.480469 L 114.476562 66.605469 C 125.761719 60.117188 126.453125 59.710938 126.742188 59.265625 L 127.039062 58.785156 L 127.039062 44.207031 C 127.039062 28.335938 127.070312 29.230469 126.441406 28.65625 C 126.273438 28.507812 120.523438 25.152344 113.652344 21.195312 L 101.171875 14.015625 L 99.785156 14.015625 L 87.574219 21.027344 C 80.851562 24.894531 75.136719 28.199219 74.859375 28.378906 C 74.582031 28.5625 74.25 28.902344 74.113281 29.148438 L 73.867188 29.574219 L 73.8125 43.308594 L 73.761719 57.046875 L 63.679688 62.855469 C 58.132812 66.042969 53.515625 68.683594 53.417969 68.707031 C 53.238281 68.757812 53.226562 67.449219 53.226562 42.203125 L 53.226562 15.632812 L 52.960938 15.175781 C 52.628906 14.621094 54.121094 15.507812 39.136719 6.894531 C 26.570312 -0.332031 26.871094 -0.179688 26.027344 0.136719 Z M 37.578125 10.65625 C 42.835938 13.671875 47.136719 16.167969 47.136719 16.199219 C 47.136719 16.230469 42.527344 18.894531 36.894531 22.132812 L 26.644531 28.015625 L 16.414062 22.132812 C 10.792969 18.894531 6.1875 16.230469 6.1875 16.199219 C 6.1875 16.167969 10.785156 13.503906 16.40625 10.273438 L 26.613281 4.402344 L 27.316406 4.785156 C 27.710938 5 32.332031 7.640625 37.578125 10.65625 Z M 110.730469 24.191406 C 116.265625 27.378906 120.84375 30.011719 120.886719 30.054688 C 121.003906 30.160156 100.703125 41.828125 100.425781 41.816406 C 100.148438 41.808594 80.097656 30.246094 80.105469 30.105469 C 80.117188 29.945312 100.289062 18.339844 100.492188 18.371094 C 100.585938 18.394531 105.195312 21.015625 110.730469 24.191406 Z M 14.828125 25.875 L 24.585938 31.492188 L 24.640625 59.304688 L 24.691406 87.121094 L 24.929688 87.496094 C 25.054688 87.695312 25.289062 87.964844 25.460938 88.089844 C 25.621094 88.207031 31.050781 91.300781 37.523438 94.953125 L 49.28125 101.59375 L 49.28125 113.359375 C 49.28125 119.816406 49.238281 125.113281 49.183594 125.113281 C 49.140625 125.113281 38.976562 119.296875 26.601562 112.175781 L 4.105469 99.238281 L 4.074219 59.464844 L 4.054688 19.703125 L 4.554688 19.980469 C 4.84375 20.132812 9.460938 22.785156 14.828125 25.875 Z M 49.28125 45.453125 L 49.28125 71.082031 L 48.886719 71.339844 C 48.351562 71.679688 28.8125 82.910156 28.746094 82.910156 C 28.714844 82.910156 28.691406 71.339844 28.691406 57.195312 L 28.703125 31.492188 L 38.910156 25.621094 C 44.523438 22.390625 49.152344 19.769531 49.207031 19.789062 C 49.246094 19.8125 49.28125 31.363281 49.28125 45.453125 Z M 88.222656 39.558594 L 98.453125 45.441406 L 98.453125 57.101562 C 98.453125 68.164062 98.441406 68.757812 98.273438 68.695312 C 98.164062 68.652344 93.535156 66 87.980469 62.800781 L 77.867188 56.992188 L 77.867188 45.335938 C 77.867188 38.917969 77.898438 33.675781 77.929688 33.675781 C 77.972656 33.675781 82.601562 36.320312 88.222656 39.558594 Z M 123.09375 45.261719 C 123.09375 51.644531 123.050781 56.910156 123.007812 56.960938 C 122.933594 57.078125 102.699219 68.738281 102.570312 68.738281 C 102.539062 68.738281 102.507812 63.496094 102.507812 57.078125 L 102.507812 45.421875 L 112.714844 39.546875 C 118.335938 36.320312 122.964844 33.675781 123.007812 33.675781 C 123.0625 33.675781 123.09375 38.886719 123.09375 45.261719 Z M 86.230469 66.46875 C 94.835938 71.421875 96.320312 72.308594 96.171875 72.425781 C 96.074219 72.488281 92.8125 74.363281 88.929688 76.582031 C 85.046875 78.796875 74.988281 84.53125 66.570312 89.328125 L 51.273438 98.054688 L 50.785156 97.789062 C 47.863281 96.191406 30.910156 86.546875 30.910156 86.472656 C 30.902344 86.3125 75.765625 60.53125 75.945312 60.597656 C 76.03125 60.628906 80.660156 63.269531 86.230469 66.46875 Z M 98.433594 87.558594 L 98.398438 99.238281 L 75.914062 112.175781 C 63.542969 119.296875 53.375 125.113281 53.324219 125.113281 C 53.269531 125.113281 53.226562 120.359375 53.226562 113.359375 L 53.226562 101.59375 L 75.765625 88.742188 C 88.148438 81.675781 98.324219 75.890625 98.378906 75.878906 C 98.421875 75.878906 98.441406 81.132812 98.433594 87.558594 Z M 98.433594 87.558594 "
+                                />
+                            </g>
+                        </svg>
+                        {/* nodejs*/}
+                        <svg
+                            width="50"
+                            height="50"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 128 128"
+                        >
+                            <path
+                                fill="#83CD29"
+                                d="M112.771 30.334L68.674 4.729c-2.781-1.584-6.402-1.584-9.205 0L14.901 30.334C12.031 31.985 10 35.088 10 38.407v51.142c0 3.319 2.084 6.423 4.954 8.083l11.775 6.688c5.628 2.772 7.617 2.772 10.178 2.772 8.333 0 13.093-5.039 13.093-13.828v-50.49c0-.713-.371-1.774-1.071-1.774h-5.623C42.594 41 41 42.061 41 42.773v50.49c0 3.896-3.524 7.773-10.11 4.48L18.723 90.73c-.424-.23-.723-.693-.723-1.181V38.407c0-.482.555-.966.982-1.213l44.424-25.561c.415-.235 1.025-.235 1.439 0l43.882 25.555c.42.253.272.722.272 1.219v51.142c0 .488.183.963-.232 1.198l-44.086 25.576c-.378.227-.847.227-1.261 0l-11.307-6.749c-.341-.198-.746-.269-1.073-.086-3.146 1.783-3.726 2.02-6.677 3.043-.726.253-1.797.692.41 1.929l14.798 8.754a9.294 9.294 0 004.647 1.246c1.642 0 3.25-.426 4.667-1.246l43.885-25.582c2.87-1.672 4.23-4.764 4.23-8.083V38.407c0-3.319-1.36-6.414-4.229-8.073zM77.91 81.445c-11.726 0-14.309-3.235-15.17-9.066-.1-.628-.633-1.379-1.272-1.379h-5.731c-.709 0-1.279.86-1.279 1.566 0 7.466 4.059 16.512 23.453 16.512 14.039 0 22.088-5.455 22.088-15.109 0-9.572-6.467-12.084-20.082-13.886-13.762-1.819-15.16-2.738-15.16-5.962 0-2.658 1.184-6.203 11.374-6.203 9.105 0 12.461 1.954 13.842 8.091.118.577.645.991 1.24.991h5.754c.354 0 .692-.143.94-.396.24-.272.367-.613.335-.979-.891-10.568-7.912-15.493-22.112-15.493-12.631 0-20.166 5.334-20.166 14.275 0 9.698 7.497 12.378 19.622 13.577 14.505 1.422 15.633 3.542 15.633 6.395 0 4.955-3.978 7.066-13.309 7.066z"
+                            />
+                        </svg>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 128 128"
+                            width="50"
+                            height="50"
+                        >
+                            <defs>
+                                <linearGradient
+                                    id="a"
+                                    x1="76.079"
+                                    x2="523.48"
+                                    y1="10.798"
+                                    y2="365.95"
+                                    gradientTransform="translate(1.11 14.613) scale(.24566)"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop offset="0" stop-color="#9013fe" />
+                                    <stop offset="1" stop-color="#6610f2" />
+                                </linearGradient>
+                                <linearGradient
+                                    id="b"
+                                    x1="193.51"
+                                    x2="293.51"
+                                    y1="109.74"
+                                    y2="278.87"
+                                    gradientTransform="translate(0 52)"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop offset="0" stop-color="#fff" />
+                                    <stop offset="1" stop-color="#f1e5fc" />
+                                </linearGradient>
+                                <filter
+                                    id="c"
+                                    width="197"
+                                    height="249"
+                                    x="161.9"
+                                    y="135.46"
+                                    color-interpolation-filters="sRGB"
+                                    filterUnits="userSpaceOnUse"
+                                >
+                                    <feFlood
+                                        flood-opacity="0"
+                                        result="BackgroundImageFix"
+                                    />
+                                    <feColorMatrix
+                                        in="SourceAlpha"
+                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    />
+                                    <feOffset dy="4" />
+                                    <feGaussianBlur stdDeviation="8" />
+                                    <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0" />
+                                    <feBlend
+                                        in2="BackgroundImageFix"
+                                        result="effect1_dropShadow"
+                                    />
+                                    <feBlend
+                                        in="SourceGraphic"
+                                        in2="effect1_dropShadow"
+                                        result="shape"
+                                    />
+                                </filter>
+                            </defs>
+                            <path
+                                fill="url(#a)"
+                                d="M14.985 27.712c-.237-6.815 5.072-13.099 12.249-13.099h73.54c7.177 0 12.486 6.284 12.249 13.099-.228 6.546.068 15.026 2.202 21.94 2.141 6.936 5.751 11.319 11.664 11.883v6.387c-5.913.564-9.523 4.947-11.664 11.883-2.134 6.914-2.43 15.394-2.202 21.94.237 6.815-5.072 13.098-12.249 13.098h-73.54c-7.177 0-12.486-6.284-12.249-13.098.228-6.546-.068-15.026-2.203-21.94-2.14-6.935-5.76-11.319-11.673-11.883v-6.387c5.913-.563 9.533-4.947 11.673-11.883 2.135-6.914 2.43-15.394 2.203-21.94z"
+                            />
+                            <path
+                                fill="url(#b)"
+                                d="M267.1 364.46c47.297 0 75.798-23.158 75.798-61.355 0-28.873-20.336-49.776-50.532-53.085v-1.203c22.185-3.609 39.594-24.211 39.594-47.219 0-32.783-25.882-54.138-65.322-54.138h-88.74v217zm-54.692-189.48h45.911c24.958 0 39.131 11.128 39.131 31.279 0 21.505-16.484 33.535-46.372 33.535h-38.67zm0 161.96v-71.431h45.602c32.661 0 49.608 12.03 49.608 35.49 0 23.459-16.484 35.941-47.605 35.941z"
+                                filter="url(#c)"
+                                transform="translate(1.494 2.203) scale(.24566)"
+                            />
+                        </svg>
+                    </div>
+                    <p className="m-0 mt-4">Database Sql & No sql that i use</p>
+                    <div className="d-flex gap-3">
+                        {/*mysql*/}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 128 128"
+                            width="50"
+                            height="50"
+                        >
+                            <path
+                                fill="#00618A"
+                                d="M116.948 97.807c-6.863-.187-12.104.452-16.585 2.341-1.273.537-3.305.552-3.513 2.147.7.733.809 1.829 1.365 2.731 1.07 1.73 2.876 4.052 4.488 5.268 1.762 1.33 3.577 2.751 5.465 3.902 3.358 2.047 7.107 3.217 10.34 5.268 1.906 1.21 3.799 2.733 5.658 4.097.92.675 1.537 1.724 2.732 2.147v-.194c-.628-.8-.79-1.898-1.366-2.733l-2.537-2.537c-2.48-3.292-5.629-6.184-8.976-8.585-2.669-1.916-8.642-4.504-9.755-7.609l-.195-.195c1.892-.214 4.107-.898 5.854-1.367 2.934-.786 5.556-.583 8.585-1.365l4.097-1.171v-.78c-1.531-1.571-2.623-3.651-4.292-5.073-4.37-3.72-9.138-7.437-14.048-10.537-2.724-1.718-6.089-2.835-8.976-4.292-.971-.491-2.677-.746-3.318-1.562-1.517-1.932-2.342-4.382-3.511-6.633-2.449-4.717-4.854-9.868-7.024-14.831-1.48-3.384-2.447-6.72-4.293-9.756-8.86-14.567-18.396-23.358-33.169-32-3.144-1.838-6.929-2.563-10.929-3.513-2.145-.129-4.292-.26-6.438-.391-1.311-.546-2.673-2.149-3.902-2.927C17.811 4.565 5.257-2.16 1.633 6.682c-2.289 5.581 3.421 11.025 5.462 13.854 1.434 1.982 3.269 4.207 4.293 6.438.674 1.467.79 2.938 1.367 4.489 1.417 3.822 2.652 7.98 4.487 11.511.927 1.788 1.949 3.67 3.122 5.268.718.981 1.951 1.413 2.145 2.927-1.204 1.686-1.273 4.304-1.95 6.44-3.05 9.615-1.899 21.567 2.537 28.683 1.36 2.186 4.567 6.871 8.975 5.073 3.856-1.57 2.995-6.438 4.098-10.732.249-.973.096-1.689.585-2.341v.195l3.513 7.024c2.6 4.187 7.212 8.562 11.122 11.514 2.027 1.531 3.623 4.177 6.244 5.073v-.196h-.195c-.508-.791-1.303-1.119-1.951-1.755-1.527-1.497-3.225-3.358-4.487-5.073-3.556-4.827-6.698-10.11-9.561-15.609-1.368-2.627-2.557-5.523-3.709-8.196-.444-1.03-.438-2.589-1.364-3.122-1.263 1.958-3.122 3.542-4.098 5.854-1.561 3.696-1.762 8.204-2.341 12.878-.342.122-.19.038-.391.194-2.718-.655-3.672-3.452-4.683-5.853-2.554-6.07-3.029-15.842-.781-22.829.582-1.809 3.21-7.501 2.146-9.172-.508-1.666-2.184-2.63-3.121-3.903-1.161-1.574-2.319-3.646-3.124-5.464-2.09-4.731-3.066-10.044-5.267-14.828-1.053-2.287-2.832-4.602-4.293-6.634-1.617-2.253-3.429-3.912-4.683-6.635-.446-.968-1.051-2.518-.391-3.513.21-.671.508-.951 1.171-1.17 1.132-.873 4.284.29 5.462.779 3.129 1.3 5.741 2.538 8.392 4.294 1.271.844 2.559 2.475 4.097 2.927h1.756c2.747.631 5.824.195 8.391.975 4.536 1.378 8.601 3.523 12.292 5.854 11.246 7.102 20.442 17.21 26.732 29.269 1.012 1.942 1.45 3.794 2.341 5.854 1.798 4.153 4.063 8.426 5.852 12.488 1.786 4.052 3.526 8.141 6.05 11.513 1.327 1.772 6.451 2.723 8.781 3.708 1.632.689 4.307 1.409 5.854 2.34 2.953 1.782 5.815 3.903 8.586 5.855 1.383.975 5.64 3.116 5.852 4.879zM29.729 23.466c-1.431-.027-2.443.156-3.513.389v.195h.195c.683 1.402 1.888 2.306 2.731 3.513.65 1.367 1.301 2.732 1.952 4.097l.194-.193c1.209-.853 1.762-2.214 1.755-4.294-.484-.509-.555-1.147-.975-1.755-.556-.811-1.635-1.272-2.339-1.952z"
+                            />
+                        </svg>
+                        {/* firebase */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 128 128"
+                            width="50"
+                            height="50"
+                        >
+                            <path
+                                fill="#f58220"
+                                d="M27.35 80.52l10.68-68.44c.37-2.33 3.5-2.89 4.6-.8l11.48 21.48-26.76 47.76zm75.94 16.63L93.1 34.11c-.31-1.96-2.76-2.76-4.17-1.35L24.71 97.15l35.54 19.95a7.447 7.447 0 007.18 0l35.86-19.95zm-28.85-55L66.21 26.5c-.92-1.78-3.44-1.78-4.36 0L25.7 90.95l48.74-48.8z"
+                            />
+                        </svg>
+                        {/*mongo db */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 128 128"
+                            width="50"
+                            height="50"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#439934"
+                                d="M88.038 42.812c1.605 4.643 2.761 9.383 3.141 14.296.472 6.095.256 12.147-1.029 18.142-.035.165-.109.32-.164.48-.403.001-.814-.049-1.208.012-3.329.523-6.655 1.065-9.981 1.604-3.438.557-6.881 1.092-10.313 1.687-1.216.21-2.721-.041-3.212 1.641-.014.046-.154.054-.235.08l.166-10.051-.169-24.252 1.602-.275c2.62-.429 5.24-.864 7.862-1.281 3.129-.497 6.261-.98 9.392-1.465 1.381-.215 2.764-.412 4.148-.618z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#45A538"
+                                d="M61.729 110.054c-1.69-1.453-3.439-2.842-5.059-4.37-8.717-8.222-15.093-17.899-18.233-29.566-.865-3.211-1.442-6.474-1.627-9.792-.13-2.322-.318-4.665-.154-6.975.437-6.144 1.325-12.229 3.127-18.147l.099-.138c.175.233.427.439.516.702 1.759 5.18 3.505 10.364 5.242 15.551 5.458 16.3 10.909 32.604 16.376 48.9.107.318.384.579.583.866l-.87 2.969z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#46A037"
+                                d="M88.038 42.812c-1.384.206-2.768.403-4.149.616-3.131.485-6.263.968-9.392 1.465-2.622.417-5.242.852-7.862 1.281l-1.602.275-.012-1.045c-.053-.859-.144-1.717-.154-2.576-.069-5.478-.112-10.956-.18-16.434-.042-3.429-.105-6.857-.175-10.285-.043-2.13-.089-4.261-.185-6.388-.052-1.143-.236-2.28-.311-3.423-.042-.657.016-1.319.029-1.979.817 1.583 1.616 3.178 2.456 4.749 1.327 2.484 3.441 4.314 5.344 6.311 7.523 7.892 12.864 17.068 16.193 27.433z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#409433"
+                                d="M65.036 80.753c.081-.026.222-.034.235-.08.491-1.682 1.996-1.431 3.212-1.641 3.432-.594 6.875-1.13 10.313-1.687 3.326-.539 6.652-1.081 9.981-1.604.394-.062.805-.011 1.208-.012-.622 2.22-1.112 4.488-1.901 6.647-.896 2.449-1.98 4.839-3.131 7.182a49.142 49.142 0 01-6.353 9.763c-1.919 2.308-4.058 4.441-6.202 6.548-1.185 1.165-2.582 2.114-3.882 3.161l-.337-.23-1.214-1.038-1.256-2.753a41.402 41.402 0 01-1.394-9.838l.023-.561.171-2.426c.057-.828.133-1.655.168-2.485.129-2.982.241-5.964.359-8.946z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#4FAA41"
+                                d="M65.036 80.753c-.118 2.982-.23 5.964-.357 8.947-.035.83-.111 1.657-.168 2.485l-.765.289c-1.699-5.002-3.399-9.951-5.062-14.913-2.75-8.209-5.467-16.431-8.213-24.642a4498.887 4498.887 0 00-6.7-19.867c-.105-.31-.407-.552-.617-.826l4.896-9.002c.168.292.39.565.496.879a6167.476 6167.476 0 016.768 20.118c2.916 8.73 5.814 17.467 8.728 26.198.116.349.308.671.491 1.062l.67-.78-.167 10.052z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#4AA73C"
+                                d="M43.155 32.227c.21.274.511.516.617.826a4498.887 4498.887 0 016.7 19.867c2.746 8.211 5.463 16.433 8.213 24.642 1.662 4.961 3.362 9.911 5.062 14.913l.765-.289-.171 2.426-.155.559c-.266 2.656-.49 5.318-.814 7.968-.163 1.328-.509 2.632-.772 3.947-.198-.287-.476-.548-.583-.866-5.467-16.297-10.918-32.6-16.376-48.9a3888.972 3888.972 0 00-5.242-15.551c-.089-.263-.34-.469-.516-.702l3.272-8.84z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#57AE47"
+                                d="M65.202 70.702l-.67.78c-.183-.391-.375-.714-.491-1.062-2.913-8.731-5.812-17.468-8.728-26.198a6167.476 6167.476 0 00-6.768-20.118c-.105-.314-.327-.588-.496-.879l6.055-7.965c.191.255.463.482.562.769 1.681 4.921 3.347 9.848 5.003 14.778 1.547 4.604 3.071 9.215 4.636 13.813.105.308.47.526.714.786l.012 1.045c.058 8.082.115 16.167.171 24.251z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#60B24F"
+                                d="M65.021 45.404c-.244-.26-.609-.478-.714-.786-1.565-4.598-3.089-9.209-4.636-13.813-1.656-4.93-3.322-9.856-5.003-14.778-.099-.287-.371-.514-.562-.769 1.969-1.928 3.877-3.925 5.925-5.764 1.821-1.634 3.285-3.386 3.352-5.968.003-.107.059-.214.145-.514l.519 1.306c-.013.661-.072 1.322-.029 1.979.075 1.143.259 2.28.311 3.423.096 2.127.142 4.258.185 6.388.069 3.428.132 6.856.175 10.285.067 5.478.111 10.956.18 16.434.008.861.098 1.718.152 2.577z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#A9AA88"
+                                d="M62.598 107.085c.263-1.315.609-2.62.772-3.947.325-2.649.548-5.312.814-7.968l.066-.01.066.011a41.402 41.402 0 001.394 9.838c-.176.232-.425.439-.518.701-.727 2.05-1.412 4.116-2.143 6.166-.1.28-.378.498-.574.744l-.747-2.566.87-2.969z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#B6B598"
+                                d="M62.476 112.621c.196-.246.475-.464.574-.744.731-2.05 1.417-4.115 2.143-6.166.093-.262.341-.469.518-.701l1.255 2.754c-.248.352-.59.669-.728 1.061l-2.404 7.059c-.099.283-.437.483-.663.722l-.695-3.985z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#C2C1A7"
+                                d="M63.171 116.605c.227-.238.564-.439.663-.722l2.404-7.059c.137-.391.48-.709.728-1.061l1.215 1.037c-.587.58-.913 1.25-.717 2.097l-.369 1.208c-.168.207-.411.387-.494.624-.839 2.403-1.64 4.819-2.485 7.222-.107.305-.404.544-.614.812-.109-1.387-.22-2.771-.331-4.158z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#CECDB7"
+                                d="M63.503 120.763c.209-.269.506-.508.614-.812.845-2.402 1.646-4.818 2.485-7.222.083-.236.325-.417.494-.624l-.509 5.545c-.136.157-.333.294-.398.477-.575 1.614-1.117 3.24-1.694 4.854-.119.333-.347.627-.525.938-.158-.207-.441-.407-.454-.623-.051-.841-.016-1.688-.013-2.533z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#DBDAC7"
+                                d="M63.969 123.919c.178-.312.406-.606.525-.938.578-1.613 1.119-3.239 1.694-4.854.065-.183.263-.319.398-.477l.012 3.64-1.218 3.124-1.411-.495z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#EBE9DC"
+                                d="M65.38 124.415l1.218-3.124.251 3.696-1.469-.572z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#CECDB7"
+                                d="M67.464 110.898c-.196-.847.129-1.518.717-2.097l.337.23-1.054 1.867z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                fill="#4FAA41"
+                                d="M64.316 95.172l-.066-.011-.066.01.155-.559-.023.56z"
+                            />
+                        </svg>
+                    </div>
+                    <p className="mt-4 ">javascript or php? javascript.</p>
+                    <p className="mt-4 mb-1 m-0">Percentage hard skils</p>
+                    <div className="d-flex w-100 flex-row overflow-x-auto gap-3">
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#845EC2" } }}
+                                value={93}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    Front-end
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    93%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#845EC2" } }}
+                                value={67}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    Back-end
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    67%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#845EC2" } }}
+                                value={83}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    UI/UX
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    83%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#845EC2" } }}
+                                value={70}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    Problem Solving
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    70%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#845EC2" } }}
+                                value={50}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    SEO
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    50%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#845EC2" } }}
+                                value={80}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    Designer
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#845EC2"
+                                    }}
+                                >
+                                    80%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                    </div>
+                    <p className="mt-4 mb-1 m-0">Percentage soft skils</p>
+                    <div className="d-flex w-100 flex-row overflow-x-auto gap-3">
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#00C9A7" } }}
+                                value={87}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#00C9A7"
+                                    }}
+                                >
+                                    Comunication
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#00C9A7"
+                                    }}
+                                >
+                                    87%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#00C9A7" } }}
+                                value={85}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#00C9A7"
+                                    }}
+                                >
+                                    Creativity
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#00C9A7"
+                                    }}
+                                >
+                                    85%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#00C9A7" } }}
+                                value={90}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#00C9A7"
+                                    }}
+                                >
+                                    Team work
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#00C9A7"
+                                    }}
+                                >
+                                    90%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#00C9A7" } }}
+                                value={80}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#00C9A7"
+                                    }}
+                                >
+                                    Responsibility
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#00C9A7"
+                                    }}
+                                >
+                                    80%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                        <div
+                            className="mb-1 circle-bar-skils"
+                            style={{ width: "80px" }}
+                        >
+                            <CircularProgressbarWithChildren
+                                styles={{ path: { stroke: "#00C9A7" } }}
+                                value={83}
+                            >
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#00C9A7"
+                                    }}
+                                >
+                                    Critical thinking
+                                </p>
+                                <p
+                                    className="m-0"
+                                    style={{
+                                        fontSize: "10px",
+                                        color: "#00C9A7"
+                                    }}
+                                >
+                                    83%
+                                </p>
+                            </CircularProgressbarWithChildren>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/* skils page end */}
+        </>
+    );
+};
 
 const Service = () => {
     return (
         <>
-  {/* servis page start */}
-  <div className="container-page" id="servis">
-    <label className="title-servis w-100" onClick={() => window.location.href='https://wa.me/6287774487198'}>
-      Take our Service in here!
-      <label style={{fontWeight :"300 !important"}}>(click it)</label></label>
-  </div>
-  {/* servis page end */}
+            {/* servis page start */}
+            <div className="container-page" id="servis">
+                <label
+                    className="title-servis w-100"
+                    onClick={() =>
+                        (window.location.href = "https://wa.me/6287774487198")
+                    }
+                >
+                    Take our Service in here!
+                    <label style={{ fontWeight: "300 !important" }}>
+                        (click it)
+                    </label>
+                </label>
+            </div>
+            {/* servis page end */}
         </>
-     )
-}
-
-var urlDb: string = 'https://zerupgmm-default-rtdb.firebaseio.com/';
-
-const Portofolio = () => {
-
-  const [imgPorto, setImgPorto] = useState<{ url: string }[]>([]);
-
-/*
-            <div
-              key={key}
-              className={`carousel-item ${index === 0? 'active' : ''}`}
-              data-bs-interval="5000"
-            >
-              <div
-                style={{ backgroundImage: `url('${val.url}')` }}
-                className="d-block img-porto w-100"
-                alt="..."
-              />
-            </div> */
-
- useEffect(() => {
-  fetch(urlDb + "portofolio.json")
-   .then(res => res.json())
-   .then(data => {
-      const portoArray: { url: string }[] = [];
-      for (let key in data) {
-        portoArray.push(data[key]);
-      }
-      setImgPorto(portoArray);
-    })
-   .catch(e => console.error(e));
-}, []);
- 
-  return (
-    <>
-      {/* Portofolio carosuel start */}
-      <div className="container-page" id="portofolio">
-        <div
-          id="carouselExampleInterval"
-          className="carousel slide carousel-fade bg-at-fix w-100 fix-padding-i"
-          data-bs-ride="carousel"
-        >
-          <div className="carousel-inner" id="portofolio-body-por">
-          { imgPorto.map((porto, index) => (
-            <div
-              key={index}
-              className={`carousel-item ${index === 0 ? 'active' : ''}`}
-              data-bs-interval="5000"
-            >
-              <div
-                style={{ backgroundImage: `url('${porto.url}')` }}
-                className="d-block img-porto w-100"
-              />
-            </div> 
-          ))}
-          </div>
-          <button
-            className="carousel-control-prev btn-portofolio"
-            type="button"
-            data-bs-target="#carouselExampleInterval"
-            data-bs-slide="prev"
-          >
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next btn-portofolio"
-            type="button"
-            data-bs-target="#carouselExampleInterval"
-            data-bs-slide="next"
-          >
-            <span className="carousel-control-next-icon" aria-hidden="true" />
-            <span className="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
-      {/* Portofolio carosuel end */}
-    </>
-  )
-}
-
-const Project = () => {
-   
-interface Project {
-  display: string;
-  title: string;
-  tech: string;
-  date: string;
-  description: string;
-  url: string;
-}
-
-// Assuming myProject is of type Project[]
-const [myProject, setMyProject] = useState<Project[]>([]);
-
-     
- useEffect(() => {
-  fetch(urlDb + "project.json")
-   .then(res => res.json())
-   .then(data => {
-      const projekArray = [];
-      for (let key in data) {
-        projekArray.push(data[key]);
-      }
-      setMyProject(projekArray);
-    })
-   .catch(e => console.error(e));
-}, []);
-
-    
-    return (
-        <>
-  {/* projek  page start */}
-  <div className="pt-5" id="projek">
-    <label className="title-project-v1">Zeru Project</label>
-    <div className="container-project-isi">
-      {/*   <div class="all-project">
-          <label class="title-project">Fake Project</label>
-         <label class="link-project"> - <a href="https://videografi-zerux.netlify.app/">Videografi learning</a></label>
-        <label class="link-project"> - <a href="https://easyworshipmobile-zpgm.netlify.app/">Easyworship mobile</a></label>
-        <label class="link-project"> - <a href="https://todoslar.000webhostapp.com/">To-do List - Laravel (CRUD)</a></label>
-        <label class="link-project"> - <a href="https://qrgeneratorzp.netlify.app">QR Generator - React js</a></label>
-        <label class="link-project"> - <a href="https://michstore.netlify.app">Michstore e-commerce (updt)</a></label>
-        <label class="link-project"> - <a href="https://chatzer-lite.web.app">Chatzer lite - chatting web realtime</a></label>
-        </div> */}
-      <h3 className="fw-bold bg-warning p-1" style={{fontFamily:"'Poppins', Sans-Serif"}}>Fake Project</h3>
-      <div className="d-flex py-5 gap-3 overflow-x-auto" style={{width:"90%",marginTop:"-20px"}} id="fake-p-body">
-        {myProject.filter(proj => proj.display === "fake").map((proj, index) => (
-          <div className="btn-project" key={index}>
-            <p className="m-0 fw-bold">{proj.title}</p>
-            <p className="m-0" style={{fontSize:".7em"}}>{proj.tech}</p>
-            <p className="m-0" style={{fontSize:".7em"}}>{proj.description}.</p>
-            <button className="py-2" style={{background:"transparent",color:"white",border:"1.5px solid white",width:"90px",fontSize:".8em",height:"auto"}} onClick={() => window.open(`${proj.url}`)}>Live web <i className="bi bi-arrow-right" /></button>
-            <p className="mt-2 mb-0" style={{fontSize:".7em"}}>Created by zeru in {proj.date}.</p>
-          </div>
-        ))}
-      </div>
-      <h3 className="fw-bold bg-info p-1" style={{fontFamily:"'Poppins', Sans-Serif"}}>Real Project</h3>
-      <div className="d-flex py-5 gap-3 overflow-x-auto" style={{width:"90%",marginTop:"-20px"}} id="real-p-body">
-          {myProject.filter(proj => proj.display === "real").map((proj, index) => (
-          <div className="btn-project" key={index}>
-            <p className="m-0 fw-bold">{proj.title}</p>
-            <p className="m-0" style={{fontSize:".7em"}}>{proj.tech}</p>
-            <p className="m-0" style={{fontSize:".7em"}}>{proj.description}.</p>
-            <button className="py-2" style={{background:"transparent",color:"white",border:"1.5px solid white",width:"90px",fontSize:".8em",height:"auto"}} onClick={() => window.open(`${proj.url}`)}>Live web <i className="bi bi-arrow-right" /></button>
-            <p className="mt-2 mb-0" style={{fontSize:".7em"}}>Created by zeru in {proj.date}.</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-  {/* projek  page end */}
-        </>
-    )
-}
-
-const SourceCode = () => {
-    
-    const [result, setResult] = useState<any[]>([]);
-    
-    useEffect(() => {
-          (async () => {
-            // ...
-            fetch(urlDb + 'sourceCode.json')
-            .then(res => res.json())
-            .then(data => {
-              var array: any[] = [];
-              for (let key in data) {
-                array.push(data[key])
-              }
-              setResult(array)
-            })
-          })();
-     }, [])
-    
-    const handleClickBox = (id: any) => {
-        var idR = encodeURIComponent(id)
-        window.location.href = "/source-code/" + idR
-    }
-    
-    return (
-     <>
-     <main className="py-5 mt-5">
-      <h1 className="text-center m-0 fw-bold">Our source code.</h1>
-      <p className="text-center m-0" style={{color:"gray"}}>want to try my creativity?</p>
-      <div className="mt-3 gap-4 justify-content-center d-flex flex-wrap container">
-      
-      {  result.map((data, index) => ( 
-        <div key={index} className="d-flex overflow-hidden flex-column align-items-center rounded-3 rounded" style={{width:"350px",height:"300px", borderRadius:"5px",boxShadow:"0 0 10px rgba(0,0,0,.3)",wordBreak: "break-word"}} onClick={() => handleClickBox(`${data.title}`)}>
-          <img src="/bgcode.jpg" alt="source code default image" style={{width:"100%"}} />
-          <div className="container mt-2">
-           <p className="fw-bold m-0">{data.title}</p>
-           <p className="" style={{fontSize:"14px"}}>
-             {data.description.length > 100? 
-          `${data.description.substring(0, 100)}...` : 
-          data.description}
-           </p>
-          </div>
-        </div>
-      ))}
-        
-      </div>
-     </main>
-     </>
-   )
-}
-
-const ContactUs = () => {
-    
-    const [iptNama, setIptNama] = useState('')
-    const [iptEmail, setIptEmail] = useState('')
-    const [iptSubjek, setIptSubjek] = useState('')
-    const [iptKonten, setIptKonten] = useState('')
-    
-    const handleSubmitFeedback = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        var result = {
-            userInput: iptNama,
-            userEmail: iptEmail,
-            userSubjek: iptSubjek,
-            feedback: iptKonten,
-            created_at: new Date()
-        }
-        fetch(urlDb + 'feedback.json', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(result)
-        })
-        .then(res => {
-            if (res.ok) {
-                alert('successfuly send a feedback!, thank you for you feedback!')
-                location.reload()
-            } else {
-                alert('ups, something wrong in here...')
-            }
-        })
-        .catch(e => alert(e))
-    }
-    
-    const handleIptNama = (e: React.ChangeEvent<HTMLInputElement>) => {
-         setIptNama(e.target.value)
-    }
-    const handleIptEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIptEmail(e.target.value)
-    }
-    const handleIptSubjek = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIptSubjek(e.target.value)
-    }
-    const handleIptKonten = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setIptKonten(e.target.value)
-    }
-    
-    return (
-        <>
-  {/* contact us  page start */}
-  <div className="container-page" id="contact">
-    <div className="contact-information">
-      <label className="title tContact">Follow us</label>
-      <br />
-      <div className="isi-info-contact">
-        <div className="c1-contact" style={{paddingLeft:"5px"}}>
-          <i className="img-contact bi bi-github" />
-          <label><a href="https://github.com/zeru-program/" className="href-contact">@zeru-program</a></label>
-        </div>
-        <div className="c1-contact">
-          <img src="whatsapp.png" className="img-contact" alt="" />
-          <label><a href="https://wa.me/6289526333265" className="href-contact">+6289526333265</a></label>
-        </div>
-        <div className="c1-contact">
-          <img src="instagram.png" className="img-contact" alt="" />
-          <label><a href="https://www.instagram.com/zerr.ace?r" className="href-contact">@zerr.ace</a></label>
-        </div>
-        <div className="c1-contact">
-          <img src="gmail.png" className="img-contact" alt='' />
-          <label><a href="mailto:zeruprogram@gmail.com?subject=HireYou" className="href-contact">zeruprogram@gmail.com</a></label>
-        </div>
-        <div className="c1-contact">
-          <img src="location.png" className="img-contact" alt="" />
-          <label><a href="https://maps.app.goo.gl/DFANiWSdinNK3yhB7" className="href-contact address">   Cipaku, bogor selatan Jawa barat, Indonesia.</a></label>
-        </div>
-      </div>
-    </div>
-    <div className="contact-form" id="talkHref">
-      <label className="title tContact">Contact us</label>
-      <form onSubmit={handleSubmitFeedback} className="form">
-        <div className="con-input pt-3 mt-4">
-          <label className="name-input">Nama lengkap</label>
-          <input type="text" name="nama" className="input-form" id="nama" onInput={handleIptNama} placeholder="type in here.." required />
-        </div>
-        <div className="con-input">
-          <label className="name-input">Email</label>
-          <input type="email" name="email" className="input-form" id="email" onInput={handleIptEmail} placeholder="type in here.." required />
-        </div>
-        <div className="con-input">
-          <label className="name-input">Subjek</label>
-          <input type="text" name="judul" className="input-form" id="subjek" onInput={handleIptSubjek} placeholder="type in here.." required />
-        </div>
-        <div className="con-input">
-          <label className="name-input">Isi subjek</label>
-          <textarea name="isi_subjek" className="input-form textarea-form" id="isiSubjek" onInput={handleIptKonten} placeholder="type in here.." required rows={8} cols={40} defaultValue={""} />
-        </div>
-        <button className="submit-form" type="submit">Kirim</button>
-      </form>
-    </div>
-  </div>
-  {/* contact us  page end */}
-        </>
-   )
-}
+    );
+};
 
 const Modals = () => {
     return (
         <>
-        {/* pop up modals sucsess form */}
-<div className="con-popup-succes">
-  <div className="isi-popup-succ">
-    <p className="succes-title">Successful sending!</p>
-  </div>
-</div>
-{/* pop up modals sucsess form */}
+            {/* pop up modals sucsess form */}
+            <div className="con-popup-succes">
+                <div className="isi-popup-succ">
+                    <p className="succes-title">Successful sending!</p>
+                </div>
+            </div>
+            {/* pop up modals sucsess form */}
         </>
-    )
-}
-
+    );
+};
 
 const ContentHome: React.FC<ContentHomeProps> = ({
-  logoTr,
-  titleTr,
-  subTr,
-  btnTalkTr,
-  btnCvTr,
-  conImgTalkTr,
-  logoTrClass,
-  titleTrClass,
-  subTrClass,
-  btnTalkTrClass,
-  btnCvTrClass,
-  conImgTalkTrClass,
-  aboutTitleTr,
-  aboutTitleTrClass,
-  aboutSubtitleTrClass,
+    titleTr,
+    subTr,
+    btnTalkTr,
+    btnCvTr,
+    conImgTalkTr,
+    titleTrClass,
+    subTrClass,
+    btnTalkTrClass,
+    btnCvTrClass,
+    conImgTalkTrClass,
+    aboutTitleTr,
+    aboutTitleTrClass,
+    aboutSubtitleTrClass
 }) => {
     return (
         <>
-        {/* ============= main content start ============== */}
-     <main>
-      <Homepage logoTr={logoTr} titleTr={titleTr} subTr={subTr} btnTalkTr={btnTalkTr} btnCvTr={btnCvTr} conImgTalkTr={conImgTalkTr} logoTrClass={logoTrClass} titleTrClass={titleTrClass} subTrClass={subTrClass} btnTalkTrClass={btnTalkTrClass} btnCvTrClass={btnCvTrClass} conImgTalkTrClass={conImgTalkTrClass} />
-      <AboutUs aboutTitleTr={aboutTitleTr} aboutTitleTrClass={aboutTitleTrClass} aboutSubtitleTrClass={aboutSubtitleTrClass} />
-      <Skils/>
-      <Service />
-      <Portofolio />
-      <Project />
-      <SourceCode />
-      <ContactUs />
- {/* <ins className="adsbygoogle" style={{"display":"inline-block","width":"360px","height":"800px"}} data-ad-client="ca-pub-2052442865900021" data-ad-slot={3410580948} /> */}
-     </main>
+            {/* ============= main content start ============== */}
+            <main>
+                <Homepage
+                    titleTr={titleTr}
+                    subTr={subTr}
+                    btnTalkTr={btnTalkTr}
+                    btnCvTr={btnCvTr}
+                    conImgTalkTr={conImgTalkTr}
+                    titleTrClass={titleTrClass}
+                    subTrClass={subTrClass}
+                    btnTalkTrClass={btnTalkTrClass}
+                    btnCvTrClass={btnCvTrClass}
+                    conImgTalkTrClass={conImgTalkTrClass}
+                />
+                <AboutUs
+                    aboutTitleTr={aboutTitleTr}
+                    aboutTitleTrClass={aboutTitleTrClass}
+                    aboutSubtitleTrClass={aboutSubtitleTrClass}
+                />
+                <Skils />
+                <Service />
+                {/* <ins className="adsbygoogle" style={{"display":"inline-block","width":"360px","height":"800px"}} data-ad-client="ca-pub-2052442865900021" data-ad-slot={3410580948} /> */}
+            </main>
         </>
-    )
-}
-
+    );
+};
 
 const Home = () => {
-  // animation
-  const [logoTr, setLogoTr] = useState("");
-  const [titleTr, setTitleTr] = useState("");
-  const [subTr, setSubTr] = useState("");
-  const [btnTalkTr, setBtnTalkTr] = useState("");
-  const [btnCvTr, setBtnCvTr] = useState("");
-  const [conImgTalkTr, setConImgTalkTr] = useState("");
-  const [aboutTitleTr, setAboutTitleTr] = useState('')
-  //class 
-  const [logoTrClass, setLogoTrClass] = useState("");
-  const [titleTrClass, setTitleTrClass] = useState("");
-  const [subTrClass, setSubTrClass] = useState("");
-  const [btnTalkTrClass, setBtnTalkTrClass] = useState("");
-  const [btnCvTrClass, setBtnCvTrClass] = useState("");
-  const [conImgTalkTrClass, setConImgTalkTrClass] = useState("");
-  const [aboutTitleTrClass, setAboutTitleTrClass] = useState("translateAbout")
-  const [aboutSubtitleTrClass, setAboutSubtitleTrClass] = useState("translateAbout")
-    
-  let isLogoTranslated: boolean = false;
-  var lastScrollTop: number = 0;
+    // animation
+    const [titleTr, setTitleTr] = useState("");
+    const [subTr, setSubTr] = useState("");
+    const [btnTalkTr, setBtnTalkTr] = useState("");
+    const [btnCvTr, setBtnCvTr] = useState("");
+    const [conImgTalkTr, setConImgTalkTr] = useState("");
+    const [aboutTitleTr, setAboutTitleTr] = useState("");
+    //class
+    const [titleTrClass, setTitleTrClass] = useState("");
+    const [subTrClass, setSubTrClass] = useState("");
+    const [btnTalkTrClass, setBtnTalkTrClass] = useState("");
+    const [btnCvTrClass, setBtnCvTrClass] = useState("");
+    const [conImgTalkTrClass, setConImgTalkTrClass] = useState("");
+    const [aboutTitleTrClass, setAboutTitleTrClass] =
+        useState("translateAbout");
+    const [aboutSubtitleTrClass, setAboutSubtitleTrClass] =
+        useState("translateAbout");
+
+    let isLogoTranslated: boolean = false;
+    var lastScrollTop: number = 0;
     // init awalan animasi
     useEffect(() => {
-    setLogoTr("trasl 1.5s ease")
-    setTitleTr("traslRight 1s ease")
-    setSubTr('traslRight 2s ease')
-    setBtnTalkTr('traslRight 2.5s ease')
-    setBtnCvTr("traslRight 3s ease")
-    setConImgTalkTr("traslRight 3.5s ease")
-    }, [])
-    
-    
-window.addEventListener("scroll", function () {
-    var currentScrollTop = window.scrollY || window.pageYOffset;
+        setTitleTr("traslRight 1s ease");
+        setSubTr("traslRight 2s ease");
+        setBtnTalkTr("traslRight 2.5s ease");
+        setBtnCvTr("traslRight 3s ease");
+        setConImgTalkTr("traslRight 3.5s ease");
+    }, []);
 
-    if (currentScrollTop > lastScrollTop) {
-        handleScrollDown(currentScrollTop);
-    }
-    if (currentScrollTop < lastScrollTop) {
-        handleScrollUp();
-    }
+    window.addEventListener("scroll", function () {
+        var currentScrollTop = window.scrollY || window.pageYOffset;
 
-    lastScrollTop = currentScrollTop;
-});
+        if (currentScrollTop > lastScrollTop) {
+            handleScrollDown(currentScrollTop);
+        }
+        if (currentScrollTop < lastScrollTop) {
+            handleScrollUp();
+        }
 
-    
-    
-function handleScrollUp() {
-    if (isLogoTranslated) {
-        // class
-          setLogoTrClass("");
-          setTitleTrClass("");
-          setSubTrClass("");
-          setBtnTalkTrClass("");
-          setBtnCvTrClass("");
-          setConImgTalkTrClass(""); 
-        //animation
-    setLogoTr("trasl 1.5s ease")
-    setTitleTr("traslRight 1s ease")
-    setSubTr('traslRight 2s ease')
-    setBtnTalkTr('traslRight 2.5s ease')
-    setBtnCvTr("traslRight 3s ease")
-    setConImgTalkTr("traslRight 3.5s ease")
-    isLogoTranslated = false;
-    }
-   //     alert('dd')
-}
+        lastScrollTop = currentScrollTop;
+    });
 
-function handleScrollDown(currentScrollTop: number) {
-    // Only trigger when currentScrollTop is greater than 40% of the viewport height
-    if (currentScrollTop > window.innerHeight * 0.4) {
-        if (!isLogoTranslated) {
+    function handleScrollUp() {
+        if (isLogoTranslated) {
+            // class
+            setTitleTrClass("");
+            setSubTrClass("");
+            setBtnTalkTrClass("");
+            setBtnCvTrClass("");
+            setConImgTalkTrClass("");
             //animation
-            setLogoTr("traslOut 1.5s ease")
-            setTitleTr("traslRightOut 1s ease")
-            setSubTr('traslRightOut 2s ease')
-            setBtnTalkTr('traslRightOut 2.5s ease')
-            setBtnCvTr("traslRightOut 3s ease")
-            setConImgTalkTr("traslRightOut 3.5s ease")
-            //class
-            setLogoTrClass("translated");
-            setTitleTrClass("translatedRight");
-            setSubTrClass("translatedRight");
-            setBtnTalkTrClass("translatedRight");
-            setBtnCvTrClass("translatedRight");
-            setConImgTalkTrClass("translatedRight");
-            isLogoTranslated = true;
+            setTitleTr("traslRight 1s ease");
+            setSubTr("traslRight 2s ease");
+            setBtnTalkTr("traslRight 2.5s ease");
+            setBtnCvTr("traslRight 3s ease");
+            setConImgTalkTr("traslRight 3.5s ease");
+            isLogoTranslated = false;
+        }
+        //     alert('dd')
+    }
+
+    function handleScrollDown(currentScrollTop: number) {
+        // Only trigger when currentScrollTop is greater than 40% of the viewport height
+        if (currentScrollTop > window.innerHeight * 0.4) {
+            if (!isLogoTranslated) {
+                //animation
+                setTitleTr("traslRightOut 1s ease");
+                setSubTr("traslRightOut 2s ease");
+                setBtnTalkTr("traslRightOut 2.5s ease");
+                setBtnCvTr("traslRightOut 3s ease");
+                setConImgTalkTr("traslRightOut 3.5s ease");
+                //class
+                setTitleTrClass("translatedRight");
+                setSubTrClass("translatedRight");
+                setBtnTalkTrClass("translatedRight");
+                setBtnCvTrClass("translatedRight");
+                setConImgTalkTrClass("translatedRight");
+                isLogoTranslated = true;
+            }
+        }
+        const aboutElement = document.getElementById("about");
+
+        if (aboutElement && typeof aboutElement.offsetTop === "number") {
+            if (
+                currentScrollTop >
+                aboutElement.offsetTop - window.innerHeight * 0.3
+            ) {
+                setTimeout(function () {
+                    setAboutTitleTr("fadeInDown 1s ease");
+                    setAboutTitleTrClass("");
+                }, 500);
+                setTimeout(function () {
+                    setAboutSubtitleTrClass("");
+                }, 1000);
+            }
         }
     }
-    const aboutElement = document.getElementById('about');
 
-if (aboutElement && typeof aboutElement.offsetTop === 'number') {
-  if (currentScrollTop > (aboutElement.offsetTop - window.innerHeight * 0.3)) {
-        setTimeout(function () {
-            setAboutTitleTr('fadeInDown 1s ease')
-            setAboutTitleTrClass('')
-        }, 500);
-        setTimeout(function () {
-            setAboutSubtitleTrClass('')
-        }, 1000);
-    }
-   }
-}
-
-  return (
-      <>
-      <Header/>
-      <BtnBackToTop handleScrollUp={handleScrollUp} />
-      <Navbar />
-      <ContentHome  logoTr={logoTr} titleTr={titleTr} subTr={subTr} btnTalkTr={btnTalkTr} btnCvTr={btnCvTr} conImgTalkTr={conImgTalkTr} logoTrClass={logoTrClass} titleTrClass={titleTrClass} subTrClass={subTrClass} btnTalkTrClass={btnTalkTrClass} btnCvTrClass={btnCvTrClass} conImgTalkTrClass={conImgTalkTrClass} aboutTitleTr={aboutTitleTr} aboutTitleTrClass={aboutTitleTrClass} aboutSubtitleTrClass={aboutSubtitleTrClass} />
-      <Footer />
-      <Modals />
-      </>
-    )
-}
+    return (
+        <>
+            <Header />
+            <BtnBackToTop handleScrollUp={handleScrollUp} />
+            <Navbar />
+            <ContentHome
+                titleTr={titleTr}
+                subTr={subTr}
+                btnTalkTr={btnTalkTr}
+                btnCvTr={btnCvTr}
+                conImgTalkTr={conImgTalkTr}
+                titleTrClass={titleTrClass}
+                subTrClass={subTrClass}
+                btnTalkTrClass={btnTalkTrClass}
+                btnCvTrClass={btnCvTrClass}
+                conImgTalkTrClass={conImgTalkTrClass}
+                aboutTitleTr={aboutTitleTr}
+                aboutTitleTrClass={aboutTitleTrClass}
+                aboutSubtitleTrClass={aboutSubtitleTrClass}
+            />
+            <Footer />
+            <Modals />
+        </>
+    );
+};
 
 export default Home;
