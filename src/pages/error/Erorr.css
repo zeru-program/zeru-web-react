@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* Above Link Google Font  */
 .contain {
-    background-color: #7727f7;
+    background-color: #262c34;
     font-family: "Montserrat", sans-serif;
     display: flex;
     justify-content: center;
@@ -15,11 +15,10 @@
     margin-top: 20%;
 }
 .error {
-    font-size: 100px;
+    font-size: 20px;
     margin-bottom: 1px;
 }
 .content-center p {
-    font-weight: bold;
 }
 .content-center button {
     border: 1px solid white;

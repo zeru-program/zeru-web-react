@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import "https://unpkg.com/transition-style";
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Anton&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Righteous&display=swap');
 a {
     text-decoration: none;
 }
@@ -17,8 +18,15 @@ a {
     box-sizing: border-box;
 }
 body {
-    background: #262c34;
+    /*background: #262c34;*/
+    background-color:hsla(214,15%,17%,1);
+background-image:
+radial-gradient(at 80% -30%, hsla(249,88%,71%,.5) 0px, transparent 50%),
+radial-gradient(at 5% 130%, hsla(249,88%,71%,.5) 0px, transparent 50%);
     font-family: 'Outfit', Sans-Serif;
+}
+.text-anton {
+    font-family: 'Anton', Sans-Serif !important;
 }
 ::-webkit-scrollbar {
     display: none;
@@ -68,7 +76,7 @@ body {
 @media screen and (min-width: 500px) {
     .navbar-collapse {
         position: absolute;
-        top: 0;
+        top: 10px;
         right: 30px;
     }
     .section-hero-home {

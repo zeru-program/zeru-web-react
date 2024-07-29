@@ -5,13 +5,8 @@ const E404 = () => {
         <>
             <div className="contain">
                 <div className="content-center">
-                    <h2 className="error">404</h2>
-                    <p>PAGE NOT FOUND</p>
-                    <p>It looks like nothing was found at this location.</p>
-                    <button onClick={() => (window.location.href = "/")}>
-                        BACK TO HOME
-                    </button>
-                </div>
+                    <p className="error">404 | Page not found.</p>
+                 </div>
             </div>
         </>
     );
