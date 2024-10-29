@@ -1,3 +1,3 @@
 # Zeru programmer web app
 
-A portfolio website.￼Enter
+A portfolio website.
